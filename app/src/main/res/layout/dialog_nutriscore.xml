@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="250dp"
+    android:layout_height="300dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:cardCornerRadius="15dp"
+    android:elevation="50dp"
+    android:layout_gravity="center"
+    android:backgroundTint="@color/white">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tv_dialog_nutri_score"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_bold"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:text="@string/dialog_nutri_score"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <ImageView
+            android:id="@+id/iv_nutriscore"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            tools:src="@tools:sample/avatars"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_dialog_nutri_score"
+            app:layout_constraintStart_toStartOf="@id/tv_dialog_nutri_score"
+            app:layout_constraintEnd_toEndOf="@id/tv_dialog_nutri_score"/>
+
+        <TextView
+            android:id="@+id/tv_dialog_kalori"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_bold"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:text="@string/dialog_kalori"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:maxLines="3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_nutriscore"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_mengerti"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_bold"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:text="@string/mengerti"
+            android:backgroundTint="#009288"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="@id/tv_dialog_kalori"
+            app:layout_constraintStart_toStartOf="@id/tv_dialog_kalori"
+            app:layout_constraintTop_toBottomOf="@id/tv_dialog_kalori"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

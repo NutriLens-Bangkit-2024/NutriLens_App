@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">NutriLens</string>
+    <string name="title_home">Home</string>
+    <string name="title_progress">Progress</string>
+    <string name="title_scan">Scan</string>
+    <string name="title_recipe">Recipe</string>
+    <string name="title_profile">Profile</string>
+
+    <string name="progress_mingguan">Progress Mingguan</string>
+    <string name="date">date</string>
+    <string name="asupan_kalori">Asupan Kalori</string>
+    <string name="nutri_score">Nutri Score</string>
+    <string name="detail_nutri_score">Makanan kemasan yang memiliki</string>
+
+
+    <string name="dialog_ingin_makan">Apakah anda ingin mengonsumsi makanan ini ?</string>
+    <string name="kembali">Kembali</string>
+    <string name="yakin">Yakin</string>
+    <string name="dialog_nutri_score">Nutri Score dari makanan ini adalah</string>
+    <string name="dialog_kalori">Makanan kemasan ini mengandung %d kalori</string>
+    <string name="mengerti">Mengerti</string>
+
+    <string name="resep_makanan">Resep Makanan</string>
+    <string name="rekomendasi_masakan_hari_ini">Rekomendasi Masakan Hari Ini</string>
+
+    <string name="profile">Profile</string>
+    <string name="dialog_ingin_keluar">Yakin ingin keluar?</string>
+    <string name="sukses">Sukses!</string>
+    <string name="password_diubah">Password berhasil diubah</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
