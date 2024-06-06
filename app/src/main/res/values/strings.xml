@@ -1,0 +1,58 @@
+<resources>
+    <string name="app_name" translatable="false">Capstone</string>
+
+    <string name="login">Login</string>
+    <string name="logout">Logout</string>
+    <string name="register">Register</string>
+    <string name="text_name">Masukkan Username</string>
+    <string name="name">Username</string>
+    <string name="text_email">Masukkan Email</string>
+    <string name="email">Email</string>
+    <string name="text_password">Masukkan Password</string>
+    <string name="password">Password</string>
+    <string name="invalid_name">Name field cannot be empty</string>
+    <string name="invalid_email">Email is not valid</string>
+    <string name="invalid_password">Password must be at least 8 characters</string>
+    <string name="form_login_error">Please fill the email and password as specified</string>
+    <string name="form_register_error">Please fill the name, email, and password as specified</string>
+    <string name="success_login">Login Success</string>
+    <string name="error_login">Login Error. Please try again!</string>
+    <string name="logout_success">Logout Success</string>
+    <string name="register_success">Register Success</string>
+    <string name="text_register">Hi! Welcome to NutriLens!</string>
+    <string name="text_login">Welcome back!</string>
+    <string name="title_news">Berita Makanan</string>
+    <string name="source_news">liputan6.com</string>
+    <string name="description_news">Deskripsi Berita Makanan</string>
+    <string name="title_recipe">Nama Makanan</string>
+    <string name="kalori_recipe">500 kalori</string>
+    <string name="bahan_recipe">Bahan-bahan:</string>
+    <string name="deskripsi_bahan">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </string>
+    <string name="tahapan_recipe">Tahapan-tahapan:</string>
+    <string name="deskripsi_tahapan">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </string>
+    <string name="label_is_havent_account">Dont have account?</string>
+    <string name="tvRegister">Register here</string>
+    <string name="label_is_have_account">Already have account?</string>
+    <string name="act_to_login">Login here</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_camera">Camera</string>
+    <string name="title_progress">Progress</string>
+    <string name="title_resep">Recipe</string>
+    <string name="title_profile">Profile</string>
+    <string name="change_profile">Ubah Profile</string>
+    <string name="change_username">Ubah Username</string>
+    <string name="old_password">Password Lama</string>
+    <string name="new_password">Password Baru</string>
+    <string name="repeat_new_password">Ketik Ulang Password Baru</string>
+    <string name="back">Kembali</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="welcome">Welcome back!</string>
+    <string name="jumlah_kalori">Jumlah Kalori Hari Ini</string>
+    <string name="batas_maksimal">Kamu sudah mencapai batas maksimal</string>
+    <string name="rekomendasi_makanan">Rekomendasi Makanan Hari Ini</string>
+    <string name="berita">Berita</string>
+
+</resources>

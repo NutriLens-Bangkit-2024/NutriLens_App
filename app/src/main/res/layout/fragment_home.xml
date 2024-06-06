@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragment.home.HomeFragment">
+
+    <View
+        android:id="@+id/colorBox"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:background="@drawable/rounded_bottom_box"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/welcomeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/welcome"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toTopOf="@id/colorBox"
+        app:layout_constraintStart_toStartOf="@id/colorBox"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="50dp" />
+
+    <TextView
+        android:id="@+id/usernameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/name"
+        android:textSize="30sp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/welcomeText"
+        app:layout_constraintStart_toStartOf="@id/colorBox"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="1dp"/>
+
+    <ImageView
+        android:id="@+id/profileImage"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/fruit"
+        app:layout_constraintTop_toTopOf="@id/colorBox"
+        app:layout_constraintEnd_toEndOf="@id/colorBox"
+        android:layout_marginEnd="25dp"
+        android:layout_marginTop="15dp" />
+
+    <View
+        android:id="@+id/colorBox2"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:background="@drawable/rounded_box"
+        app:layout_constraintTop_toBottomOf="@id/colorBox"
+        android:layout_marginTop="36dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"/>
+
+    <TextView
+        android:id="@+id/calorieText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/jumlah_kalori"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toTopOf="@id/colorBox2"
+        app:layout_constraintStart_toStartOf="@id/colorBox2"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="16dp" />
+
+    <ProgressBar
+        android:id="@+id/calorieProgressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:progressDrawable="@drawable/progress_bar"
+        android:max="10000"
+        app:layout_constraintTop_toBottomOf="@id/calorieText"
+        app:layout_constraintStart_toStartOf="@id/colorBox2"
+        app:layout_constraintEnd_toEndOf="@id/colorBox2"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginTop="16dp" />
+
+    <TextView
+        android:id="@+id/limitText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/batas_maksimal"
+        android:textSize="14sp"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/calorieProgressBar"
+        app:layout_constraintStart_toStartOf="@id/colorBox2"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="25dp" />
+
+    <TextView
+        android:id="@+id/recommendFoodText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/rekomendasi_makanan"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/colorBox2"
+        app:layout_constraintStart_toStartOf="@id/colorBox"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="36dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/recommendFoodText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="6dp"
+        android:clipToPadding="false"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:background="@android:color/transparent"
+        tools:listitem="@layout/item_list_recipe" />
+
+    <TextView
+        android:id="@+id/recommendNewsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/berita"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/recyclerView1"
+        app:layout_constraintStart_toStartOf="@id/colorBox"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="20dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/recommendNewsText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="6dp"
+        android:clipToPadding="false"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:background="@android:color/transparent"
+        tools:listitem="@layout/item_list_news" />
+</androidx.constraintlayout.widget.ConstraintLayout>
