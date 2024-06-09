@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.nutrilens"
+    namespace = "com.capstone.nutrilens"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.nutrilens"
+        applicationId = "com.capstone.nutrilens"
         minSdk = 29
         targetSdk = 34
         versionCode = 1
@@ -56,4 +56,12 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+    implementation("de.hdodenhof:circleimageview:3.1.0")
+
+    implementation(libs.glide)
+    implementation(libs.androidx.datastore.preferences)
+    implementation(libs.logging.interceptor)
+    implementation(libs.converter.gson)
+    implementation(libs.retrofit)
+    implementation(libs.androidx.swiperefreshlayout)
 }

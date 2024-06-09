@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E7E7E7"
+    android:background="@color/white"
     tools:context=".ui.recipe.RecipeFragment">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardTitle_ResepMakanan"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        app:cardBackgroundColor="@color/nutriLens_green"
+        app:cardBackgroundColor="@color/primary"
         app:cardCornerRadius="47dp"
         android:layout_marginTop="-60dp"
         app:layout_constraintStart_toStartOf="parent"

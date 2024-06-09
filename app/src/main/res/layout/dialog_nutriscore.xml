@@ -61,7 +61,7 @@
             android:textSize="16sp"
             android:textColor="@color/white"
             android:text="@string/mengerti"
-            android:backgroundTint="#009288"
+            android:backgroundTint="@color/primary"
             android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="@id/tv_dialog_kalori"
             app:layout_constraintStart_toStartOf="@id/tv_dialog_kalori"

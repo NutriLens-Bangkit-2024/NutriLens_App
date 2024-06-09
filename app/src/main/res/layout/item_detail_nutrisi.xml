@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginBottom="@dimen/dimen_8dp">
+
+    <TextView
+        android:id="@+id/tv_jenisNutrisi"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:fontFamily="@font/poppins_bold"
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        android:text="@string/jenis_nutrisi"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/beratNutrisiEditTextLayout"
+        app:layout_constraintBottom_toBottomOf="@id/beratNutrisiEditTextLayout"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/beratNutrisiEditTextLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            app:boxStrokeColor="@color/primary"
+            app:layout_constraintEnd_toStartOf="@id/tv_beratJenisNutrisi"
+            app:layout_constraintTop_toTopOf="parent">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_beratNutrisi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:maxLines="1"
+                android:inputType="number"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/tv_beratJenisNutrisi"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:fontFamily="@font/poppins_bold"
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        android:text="@string/gram"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/beratNutrisiEditTextLayout"
+        app:layout_constraintBottom_toBottomOf="@id/beratNutrisiEditTextLayout"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

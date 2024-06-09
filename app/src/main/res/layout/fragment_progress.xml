@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.progress.ProgressFragment"
-    android:background="#E7E7E7">
+    android:background="@color/white">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -15,7 +15,7 @@
             android:id="@+id/cardTitle_ProgressMingguan"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            app:cardBackgroundColor="@color/nutriLens_green"
+            app:cardBackgroundColor="@color/primary"
             app:cardCornerRadius="47dp"
             android:layout_marginTop="-60dp"
             app:layout_constraintStart_toStartOf="parent"

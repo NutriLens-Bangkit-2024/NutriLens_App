@@ -6,6 +6,21 @@
     <string name="title_recipe">Recipe</string>
     <string name="title_profile">Profile</string>
 
+    <!--    login activity-->
+    <string name="invalid_name">Name field cannot be empty</string>
+    <string name="invalid_email">Email is not valid</string>
+    <string name="text_email">Masukkan Email</string>
+    <string name="invalid_password">Password must be at least 8 characters</string>
+
+    <string name="welcome_back">welcome back,</string>
+    <string name="jumlah_kalori">Jumlah Kalori Hari Ini</string>
+    <string name="batas_maksimal">Kamu sudah mencapai batas maksimal</string>
+    <string name="rekomendasi_masakan">Rekomendasi Masakan Hari Ini</string>
+    <string name="title_news">Berita Makanan</string>
+    <string name="source_news">liputan6.com</string>
+    <string name="description_news">Deskripsi berita makanan</string>
+
+
     <string name="progress_mingguan">Progress Mingguan</string>
     <string name="date">date</string>
     <string name="asupan_kalori">Asupan Kalori</string>
@@ -22,12 +37,37 @@
 
     <string name="resep_makanan">Resep Makanan</string>
     <string name="rekomendasi_masakan_hari_ini">Rekomendasi Masakan Hari Ini</string>
+    <string name="kalori_recipe">500 Kalori</string>
+    <string name="bahan_recipe">Bahan-bahan:</string>
+    <string name="deskripsi_bahan">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
+    <string name="tahapan_recipe">Tahap-tahapan:</string>
+    <string name="deskripsi_tahapan">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
 
     <string name="profile">Profile</string>
+    <string name="name">Username</string>
+    <string name="email">Email</string>
+    <string name="dark_mode">Dark Mode</string>
     <string name="dialog_ingin_keluar">Yakin ingin keluar?</string>
     <string name="sukses">Sukses!</string>
     <string name="password_diubah">Password berhasil diubah</string>
+    <string name="change_profile">Ubah Profile</string>
+    <string name="berita">Berita</string>
+    <string name="logout">Logout</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="text_login_welcome">Welcome back!</string>
+    <string name="password">Password</string>
+    <string name="text_password">Masukkan Password</string>
+    <string name="login">Login\n</string>
+    <string name="label_is_have_account">Already have an account?</string>
+    <string name="act_to_login">Login here</string>
+    <string name="text_register_welcome">Hi! Welcome to NutriLens!</string>
+    <string name="register">Register</string>
+    <string name="text_name">Masukkan Username\n</string>
+    <string name="benar">Benar</string>
+    <string name="keterangan">*Jika data diatas masih kurang tepat, anda dapat menubah nilainya terlebih dahulu!</string>
+    <string name="detail_nutrisi_makanan">Detail Nutrisi Makanan</string>
+    <string name="jenis_nutrisi">Kalsium</string>
+    <string name="gram">gram\n</string>
 
 </resources>

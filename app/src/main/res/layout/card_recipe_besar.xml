@@ -6,20 +6,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_gravity="center"
     android:layout_marginBottom="16dp"
+    android:layout_marginStart="4dp"
+    android:elevation="30dp"
     app:cardCornerRadius="25dp">
     
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <ImageView
+            android:id="@+id/iv_recipe_besar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:scaleType="centerCrop"
             tools:src="@tools:sample/avatars"/>
         <View
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/card_gradient"/>
         <TextView
+            android:id="@+id/tv_nama_recipe_besar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_bold"
@@ -33,6 +38,7 @@
             android:layout_marginTop="55dp"
             android:layout_gravity="start|center"/>
         <TextView
+            android:id="@+id/tv_kalori_recipe_besar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_regular"
