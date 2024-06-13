@@ -48,7 +48,7 @@
         tools:alpha="100" />
 
     <com.capstone.nutrilens.ui.customview.EmailEt
-        android:id="@+id/login_email_field"
+        android:id="@+id/emailEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -57,7 +57,6 @@
         android:padding="12.5dp"
         android:textColor="@color/primary"
         android:textSize="15sp"
-        android:text="testing aja"
         app:layout_constraintBottom_toTopOf="@+id/passwordTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -72,13 +71,13 @@
         android:text="@string/password"
         android:fontFamily="@font/poppins_bold"
         android:textColor="@color/primary"
-        app:layout_constraintBottom_toTopOf="@+id/login_password_field"
+        app:layout_constraintBottom_toTopOf="@+id/passwordEditText"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_email_field"
+        app:layout_constraintTop_toBottomOf="@+id/emailEditText"
         tools:alpha="100" />
 
     <com.capstone.nutrilens.ui.customview.PasswordEt
-        android:id="@+id/login_password_field"
+        android:id="@+id/passwordEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -86,26 +85,26 @@
         android:maxLines="1"
         android:padding="12.5dp"
         android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/login_button_login"
+        app:layout_constraintBottom_toTopOf="@+id/loginButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordTextView" />
 
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/login_button_login"
+        android:id="@+id/loginButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_bold"
         android:textSize="16sp"
         android:textColor="@color/white"
-        android:text="@string/mengerti"
+        android:text="@string/login"
         android:backgroundTint="@color/primary"
         android:layout_marginTop="20dp"
         app:layout_constraintBottom_toTopOf="@+id/layoutTextLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_password_field"/>
+        app:layout_constraintTop_toBottomOf="@+id/passwordEditText"/>
 
     <LinearLayout
         android:id="@+id/layoutTextLogin"
@@ -115,7 +114,7 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_button_login">
+        app:layout_constraintTop_toBottomOf="@+id/loginButton">
 
         <TextView
             android:id="@+id/textIsHaveAccount"
@@ -130,13 +129,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:text="@string/act_to_login"
+            android:text="@string/act_to_register"
             android:fontFamily="@font/poppins_bold"
             android:textColor="@color/primary" />
     </LinearLayout>
 
     <ProgressBar
-        android:id="@+id/register_progress_bar"
+        android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"

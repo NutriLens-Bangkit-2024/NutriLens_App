@@ -47,6 +47,7 @@
     <string name="name">Username</string>
     <string name="email">Email</string>
     <string name="dark_mode">Dark Mode</string>
+    <string name="light_mode">Light Mode</string>
     <string name="dialog_ingin_keluar">Yakin ingin keluar?</string>
     <string name="sukses">Sukses!</string>
     <string name="password_diubah">Password berhasil diubah</string>
@@ -58,9 +59,10 @@
     <string name="text_login_welcome">Welcome back!</string>
     <string name="password">Password</string>
     <string name="text_password">Masukkan Password</string>
-    <string name="login">Login\n</string>
+    <string name="login">Login</string>
     <string name="label_is_have_account">Already have an account?</string>
     <string name="act_to_login">Login here</string>
+    <string name="act_to_register">Register here</string>
     <string name="text_register_welcome">Hi! Welcome to NutriLens!</string>
     <string name="register">Register</string>
     <string name="text_name">Masukkan Username\n</string>
