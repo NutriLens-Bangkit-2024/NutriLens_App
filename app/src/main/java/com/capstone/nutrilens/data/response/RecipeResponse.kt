@@ -1,0 +1,42 @@
+package com.capstone.nutrilens.data.response
+
+import com.google.gson.annotations.SerializedName
+
+data class RecipeResponse(
+
+    @field:SerializedName("data")
+    val data: Data,
+
+    @field:SerializedName("status")
+    val status: String
+)
+
+data class RecipesItem(
+
+    @field:SerializedName("createdAt")
+    val createdAt: String,
+
+    @field:SerializedName("ingredient")
+    val ingredient: String,
+
+    @field:SerializedName("directions")
+    val directions: String,
+
+    @field:SerializedName("name")
+    val name: String,
+
+    @field:SerializedName("id")
+    val id: String,
+
+    @field:SerializedName("calories")
+    val calories: String,
+
+    @field:SerializedName("updatedAt")
+    val updatedAt: String
+)
+
+data class Data(
+
+    @field:SerializedName("recipes")
+    val recipes: List<RecipesItem>
+)

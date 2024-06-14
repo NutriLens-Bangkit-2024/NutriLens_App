@@ -8,6 +8,8 @@ import com.capstone.nutrilens.data.response.LoginRequest
 import com.capstone.nutrilens.data.response.LoginResponse
 import com.capstone.nutrilens.data.response.News
 import com.capstone.nutrilens.data.response.NewsDetailApiResponse
+import com.capstone.nutrilens.data.response.RecipeResponse
+import com.capstone.nutrilens.data.response.RegisterResponse
 import com.capstone.nutrilens.data.response.UserResponse
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -89,4 +91,18 @@ interface ApiConfig {
 //        @Header("Authorization") authorization: String,
 //        @Path("recipeId") recipeId: String
 //    ): Call<RecipeResponse>
+
+    @GET("recipes")
+    suspend fun getRecipes(
+        @Header("Authorization") token:String
+    ): RecipeResponse
+
+    @FormUrlEncoded
+    @POST("user")
+    suspend fun registerUser(
+        @Field("email") email: String,
+        @Field("password") password: String,
+        @Field("name") name: String,
+        @Field("profileurl") profileurl:String
+    ): RegisterResponse
 }
