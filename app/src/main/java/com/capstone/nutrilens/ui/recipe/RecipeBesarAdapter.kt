@@ -23,7 +23,7 @@ class RecipeBesarAdapter: ListAdapter<RecipesItem, RecipeBesarAdapter.MyViewHold
             binding.tvNamaRecipeBesar.text = recipe.name
             binding.tvKaloriRecipeBesar.text = recipe.calories
             Glide.with(binding.ivRecipeBesar.context)
-                .load("https://www.allrecipes.com/thmb/9aWCdbfttLcsW2dFQWwVQBGJM3E=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/AR-236973-CreamyAlfredoSauce-0238-4x3-1-01e7091f47ae452d991abe32cbed5921.jpg")
+                .load(recipe.image)
                 .into(binding.ivRecipeBesar)
         }
     }

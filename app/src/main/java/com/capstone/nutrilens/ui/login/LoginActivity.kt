@@ -25,8 +25,10 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.hide()
 
         preferences = Preferences(this)
 
@@ -62,7 +64,7 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-        binding.textToLogin.setOnClickListener {
+        binding.textToRegister.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
