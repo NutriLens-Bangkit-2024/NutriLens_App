@@ -1,8 +1,8 @@
 package com.capstone.nutrilens.data.response
 
-data class NewsApiResponse<T>(
+data class NewsListApiResponse(
     val status: String,
-    val data: T
+    val data: NewsListData
 )
 
 

@@ -1,12 +1,13 @@
 package com.capstone.nutrilens.data.api
 
-import com.capstone.nutrilens.data.response.NewsApiResponse
+import com.capstone.nutrilens.data.response.NewsListApiResponse
 import com.capstone.nutrilens.data.response.CaloriesResponse
 import com.capstone.nutrilens.data.response.EditUserRequest
-import com.capstone.nutrilens.data.response.NewsData
+import com.capstone.nutrilens.data.response.NewsListData
 import com.capstone.nutrilens.data.response.LoginRequest
 import com.capstone.nutrilens.data.response.LoginResponse
 import com.capstone.nutrilens.data.response.News
+import com.capstone.nutrilens.data.response.NewsDetailApiResponse
 import com.capstone.nutrilens.data.response.UserResponse
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -62,7 +63,7 @@ interface ApiConfig {
     @GET("news")
     fun getAllNews(
         @Header("Authorization") authorization: String
-    ): Call<NewsApiResponse<NewsData>>
+    ): Call<NewsListApiResponse>
 
     @FormUrlEncoded
     @POST("saveFood")
@@ -77,11 +78,11 @@ interface ApiConfig {
         @Header("Authorization") authorization: String
     ): Call<CaloriesResponse>
 
-    @GET("news/{newsId}")
+    @GET("news/{id}")
     fun getNews(
         @Header("Authorization") authorization: String,
-        @Path("newsId") newsId: String
-    ): Call<NewsApiResponse<News>>
+        @Path("id") id: String
+    ): Call<NewsDetailApiResponse>
 
 //    @GET("recipes/{recipeId}")
 //    fun getRecipe(

@@ -1,6 +1,7 @@
 package com.capstone.nutrilens.ui.news
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -28,11 +29,13 @@ class NewsActivity : AppCompatActivity() {
         val authorization = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJ1cm46YXVkaWVuY2U6dGVzdCIsImlzcyI6InVybjppc3N1ZXI6dGVzdCIsInN1YiI6IlpkXzczQ2ktU2dpanVzSU0iLCJleHAiOjE3MTgzNDMxMDQsImlhdCI6MTcxODI1NjcwNH0.kEDTcIlg60nLEtxDg_42poFf5gKaeL90-5kd7LVWwrw"
 
         newsViewModel.getNews(authorization, id).observe(this, Observer { response ->
-            response?.data?.let {
-                binding.tvTitle.text = it.title
-                binding.tvSourceNews.text = it.source
-                binding.tvDescription.text = it.content
-                // Set other views as needed
+            response?.data?.news?.let { news ->
+                Log.d("NewsActivity", "News Title: ${news.title}")
+                binding.tvTitle.text = news.title
+                binding.tvSourceNews.text = news.source
+                binding.tvDescription.text = news.content
+            } ?: run {
+                Log.d("NewsActivity", "News data is null")
             }
         })
     }

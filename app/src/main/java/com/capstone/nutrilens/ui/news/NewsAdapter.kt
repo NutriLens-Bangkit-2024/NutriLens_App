@@ -36,7 +36,7 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
 
         fun bind(news: News) {
             newsTitle.text = news.title
-            newsSource.text = news.content
+            newsSource.text = news.source
             itemView.setOnClickListener {
                 val context = itemView.context
                 val intent = Intent(context, NewsActivity::class.java).apply {

@@ -1,5 +1,5 @@
 package com.capstone.nutrilens.data.response
 
-data class NewsData(
+data class NewsListData(
     val news: List<News>
 )

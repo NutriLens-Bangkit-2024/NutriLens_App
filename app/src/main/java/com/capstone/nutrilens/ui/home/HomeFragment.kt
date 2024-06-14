@@ -51,9 +51,6 @@ class HomeFragment : Fragment() {
                 newsAdapter.setNewsList(newsList)
             } ?: Log.d("HomeFragment", "News data is null")
         })
-
-
-
     }
 
 //    private var _binding: FragmentHomeBinding? = null
