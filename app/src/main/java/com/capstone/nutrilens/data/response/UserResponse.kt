@@ -16,7 +16,7 @@ data class UserResponse(
     val name: String? = null,
 
     @field:SerializedName("profileurl")
-    val profileUrl: String? = null,
+    val profileurl: String? = null,
 
     @field:SerializedName("createdAt")
     val createdAt: String? = null,

@@ -3,10 +3,8 @@ package com.capstone.nutrilens.data.api
 import com.capstone.nutrilens.data.response.NewsListApiResponse
 import com.capstone.nutrilens.data.response.CaloriesResponse
 import com.capstone.nutrilens.data.response.EditUserRequest
-import com.capstone.nutrilens.data.response.NewsListData
 import com.capstone.nutrilens.data.response.LoginRequest
 import com.capstone.nutrilens.data.response.LoginResponse
-import com.capstone.nutrilens.data.response.News
 import com.capstone.nutrilens.data.response.NewsDetailApiResponse
 import com.capstone.nutrilens.data.response.RecipeResponse
 import com.capstone.nutrilens.data.response.RegisterResponse
@@ -41,26 +39,20 @@ interface ApiConfig {
 
     @GET("user/{id}")
     suspend fun getUser(
-        @Header("Authorization") token: String,
-        @Path("id") id: String
+        @Header("Authorization") token: String
     ): Response<UserResponse>
 
-    @PUT("user/{userId}")
-    fun editUser(
+    @PUT("user/{id}")
+    suspend fun editUser(
         @Header("Authorization") authorization: String,
-        @Path("id") id: String,
-        @Body editUserRequest: EditUserRequest
-    ): Call<ResponseBody>
+        id: String,
+        editUserRequest: EditUserRequest
+    ): Response<UserResponse>
 
     @POST("logout")
     fun logout(
         @Header("Authorization") authorization: String
     ): Call<ResponseBody>
-
-//    @GET("recipes")
-//    fun getAllRecipes(
-//        @Header("Authorization") authorization: String
-//    ): Call<NewsData<Recipe>>
 
     @GET("news")
     fun getAllNews(

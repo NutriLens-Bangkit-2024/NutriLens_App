@@ -21,5 +21,3 @@ class NewsViewModel(private val repository: NewsRepository) : ViewModel() {
         return repository.getNews(authorization, id)
     }
 }
-
-

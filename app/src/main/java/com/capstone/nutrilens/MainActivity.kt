@@ -17,6 +17,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.capstone.nutrilens.data.util.Preferences
 import com.capstone.nutrilens.data.util.getImageUri
 import com.capstone.nutrilens.databinding.ActivityMainBinding
 import com.capstone.nutrilens.ui.login.LoginActivity
@@ -25,6 +26,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private var currentImageUri: Uri? = null
+    private lateinit var preferences: Preferences
 
     private fun allPermissionGranted()=
         ContextCompat.checkSelfPermission(
@@ -50,6 +52,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 //        startActivity(Intent(this,LoginActivity::class.java))
+        preferences = Preferences(this)
 
         if(!allPermissionGranted()){
             requestPermissionLauncher.launch(REQUIRED_PERMISSION)

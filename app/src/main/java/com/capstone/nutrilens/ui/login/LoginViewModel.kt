@@ -1,6 +1,5 @@
 package com.capstone.nutrilens.ui.login
 
-
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -17,9 +16,7 @@ import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 
 class LoginViewModel : ViewModel() {
-
     val loginResponse = MutableLiveData<NetworkResult<LoginResponse>>()
-    val userResponse = MutableLiveData<NetworkResult<UserResponse>>()
 
     fun login(loginRequest: LoginRequest) {
         viewModelScope.launch {
@@ -39,24 +36,4 @@ class LoginViewModel : ViewModel() {
             }
         }
     }
-
-    fun getUser(id: String, token: String) {
-        viewModelScope.launch {
-            userResponse.value = NetworkResult.Loading(true)
-            try {
-                val response = ApiService.instanceRetrofit.getUser(id, token)
-                if (response.isSuccessful) {
-                    userResponse.value = NetworkResult.Success(response.body()!!)
-                } else {
-                    val errorBody = response.errorBody()?.string()
-                    userResponse.value = NetworkResult.Error(errorBody ?: "Unknown error")
-                }
-            } catch (e: Exception) {
-                userResponse.value = NetworkResult.Error(e.message ?: "Unknown error")
-            } finally {
-                userResponse.value = NetworkResult.Loading(false)
-            }
-        }
-    }
 }
-

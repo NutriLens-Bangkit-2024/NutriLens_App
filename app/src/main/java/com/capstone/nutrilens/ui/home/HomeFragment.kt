@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstone.nutrilens.data.api.ApiService
 import com.capstone.nutrilens.data.response.RecipesItem
+import com.capstone.nutrilens.data.util.Preferences
 import com.capstone.nutrilens.databinding.FragmentHomeBinding
 import com.capstone.nutrilens.ui.news.NewsAdapter
 import com.capstone.nutrilens.ui.news.NewsRepository
@@ -30,6 +31,7 @@ class HomeFragment : Fragment() {
     private lateinit var newsAdapter: NewsAdapter
     private lateinit var recipeAdapter: RecipeBesarAdapter
     private lateinit var binding: FragmentHomeBinding
+    private lateinit var preferences: Preferences
 
     private val recipeViewModel by viewModels<RecipeViewModel> {
         RecipeViewModelFactory.getInstance(requireContext())
@@ -40,8 +42,10 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
+        preferences = Preferences(requireContext()) // Inisialisasi preferences di sini
         return binding.root
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -57,9 +61,7 @@ class HomeFragment : Fragment() {
             adapter = newsAdapter
         }
 
-        // Ambil data berita
-        val authorization = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJ1cm46YXVkaWVuY2U6dGVzdCIsImlzcyI6InVybjppc3N1ZXI6dGVzdCIsInN1YiI6IlVZWnA3ZS1ZRHZFd0pXMHAiLCJpYXQiOjE3MTgzNzg1NzR9.5kUX07vwT7xNQLTAIDimRAb6UGIDXiyczHjbg5Gz4bQ"
-        newsViewModel.getAllNews(authorization).observe(viewLifecycleOwner, Observer { response ->
+        newsViewModel.getAllNews("Bearer ${preferences.getToken().toString()}").observe(viewLifecycleOwner, Observer { response ->
             response?.data?.news?.let { newsList ->
                 Log.d("HomeFragment", "News data received: $newsList")
                 newsAdapter.setNewsList(newsList)
@@ -74,8 +76,8 @@ class HomeFragment : Fragment() {
         }
 
         // Ambil data resep
-        val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJ1cm46YXVkaWVuY2U6dGVzdCIsImlzcyI6InVybjppc3N1ZXI6dGVzdCIsInN1YiI6IlVZWnA3ZS1ZRHZFd0pXMHAiLCJpYXQiOjE3MTgzNzg1NzR9.5kUX07vwT7xNQLTAIDimRAb6UGIDXiyczHjbg5Gz4bQ"
-        recipeViewModel.getRecipes(token).observe(viewLifecycleOwner) {
+//        val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJ1cm46YXVkaWVuY2U6dGVzdCIsImlzcyI6InVybjppc3N1ZXI6dGVzdCIsInN1YiI6IlVZWnA3ZS1ZRHZFd0pXMHAiLCJpYXQiOjE3MTgzNzg1NzR9.5kUX07vwT7xNQLTAIDimRAb6UGIDXiyczHjbg5Gz4bQ"
+        recipeViewModel.getRecipes("Bearer ${preferences.getToken().toString()}").observe(viewLifecycleOwner) {
             recipeViewModel.recipeData().observe(viewLifecycleOwner) { recipe ->
                 if (recipe != null) {
                     setRecipeData((recipe))
@@ -101,7 +103,6 @@ class HomeFragment : Fragment() {
                     ArrayList(recipe.ingredient)
                 )
                 recipeDetailIntent.putStringArrayListExtra(RecipeDetailActivity.EXTRA_RECIPE_DIRECTIONS,ArrayList(recipe.directions))
-
                 startActivity(recipeDetailIntent,options.toBundle())
             }
         })

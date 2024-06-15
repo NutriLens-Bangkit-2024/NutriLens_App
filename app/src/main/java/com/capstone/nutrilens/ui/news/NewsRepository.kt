@@ -48,5 +48,3 @@ class NewsRepository(private val apiService: ApiConfig) {
         return data
     }
 }
-
-

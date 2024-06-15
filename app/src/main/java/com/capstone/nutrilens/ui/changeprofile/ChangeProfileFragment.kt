@@ -1,60 +1,85 @@
 package com.capstone.nutrilens.ui.changeprofile
 
+import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.capstone.nutrilens.R
+import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.capstone.nutrilens.data.api.ApiService
+import com.capstone.nutrilens.data.di.Injection.provideChangeProfileRepository
+import com.capstone.nutrilens.data.response.EditUserRequest
+import com.capstone.nutrilens.data.util.NetworkResult
+import com.capstone.nutrilens.databinding.DialogSuccessPasswordBinding
+import com.capstone.nutrilens.databinding.FragmentChangeProfileBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [ChangeProfileFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ChangeProfileFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var changeProfileViewModel: ChangeProfileViewModel
+    private var _binding: FragmentChangeProfileBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_change_profile, container, false)
+    ): View {
+        _binding = FragmentChangeProfileBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ChangeProfileFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ChangeProfileFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val changeProfileRepository = provideChangeProfileRepository()
+        val changeProfileFactory = ChangeProfileFactory.getInstance(changeProfileRepository)
+        changeProfileViewModel = ViewModelProvider(this, changeProfileFactory).get(ChangeProfileViewModel::class.java)
+
+        binding.btnChangeProfile.setOnClickListener {
+            val newName = binding.edtChangeUsername.text.toString()
+            val newPassword = binding.edtChangePassword.text.toString()
+            val userEmail = "email"
+            val userProfileUrl = "profileurl"
+            val editUserRequest = EditUserRequest(userEmail, newPassword, newName, userProfileUrl)
+            val token = ""
+            val id = "id"
+            changeProfileViewModel.editUser("Bearer $token", id, editUserRequest)
+        }
+
+        binding.btnChangeProfileKembali.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
+        changeProfileViewModel.saveChangesResult.observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is NetworkResult.Success -> {
+                    showSuccessDialog()
+                    findNavController().popBackStack()
                 }
+                is NetworkResult.Error -> {
+                    Toast.makeText(requireContext(), result.exception, Toast.LENGTH_SHORT).show()
+                }
+                else -> {}
             }
+        }
+    }
+
+    private fun showSuccessDialog() {
+        val dialogBinding = DialogSuccessPasswordBinding.inflate(layoutInflater)
+        val dialog = AlertDialog.Builder(requireContext())
+            .setView(dialogBinding.root)
+            .create()
+
+        dialogBinding.btnPasswordMengerti.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

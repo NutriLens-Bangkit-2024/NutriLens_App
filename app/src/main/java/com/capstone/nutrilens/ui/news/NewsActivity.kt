@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.capstone.nutrilens.R
 import com.capstone.nutrilens.data.api.ApiService
+import com.capstone.nutrilens.data.util.Preferences
 import com.capstone.nutrilens.databinding.ActivityNewsBinding
 
 class NewsActivity : AppCompatActivity() {
@@ -28,9 +29,8 @@ class NewsActivity : AppCompatActivity() {
         newsViewModel = ViewModelProvider(this, ViewModelFactory(repository))[NewsViewModel::class.java]
 
         val id = intent.getStringExtra("id") ?: return
-        val authorization = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJ1cm46YXVkaWVuY2U6dGVzdCIsImlzcyI6InVybjppc3N1ZXI6dGVzdCIsInN1YiI6IlVZWnA3ZS1ZRHZFd0pXMHAiLCJpYXQiOjE3MTgzNzg1NzR9.5kUX07vwT7xNQLTAIDimRAb6UGIDXiyczHjbg5Gz4bQ"
-
-        newsViewModel.getNews(authorization, id).observe(this, Observer { response ->
+        val token = Preferences(this).getToken().toString()
+        newsViewModel.getNews("Bearer $token", id).observe(this, Observer { response ->
             response?.data?.news?.let { news ->
                 Log.d("NewsActivity", "News Title: ${news.title}")
                 binding.tvTitle.text = news.title

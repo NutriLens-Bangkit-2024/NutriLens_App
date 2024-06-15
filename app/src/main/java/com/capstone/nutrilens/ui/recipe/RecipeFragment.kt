@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstone.nutrilens.data.response.RecipesItem
+import com.capstone.nutrilens.data.util.Preferences
 import com.capstone.nutrilens.databinding.FragmentHomeBinding
 import com.capstone.nutrilens.databinding.FragmentRecipeBinding
 
@@ -24,6 +25,7 @@ class RecipeFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+    private lateinit var preferences: Preferences
 
     private val recipeViewModel by viewModels<RecipeViewModel> {
         RecipeViewModelFactory.getInstance(requireContext())
@@ -34,6 +36,7 @@ class RecipeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentRecipeBinding.inflate(inflater, container, false)
+        preferences = Preferences(requireContext())
         return binding.root
     }
 

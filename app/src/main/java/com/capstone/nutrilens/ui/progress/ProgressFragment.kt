@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.capstone.nutrilens.data.api.ApiService
 import com.capstone.nutrilens.data.util.NetworkResult
+import com.capstone.nutrilens.data.util.Preferences
 import com.capstone.nutrilens.databinding.FragmentProgressBinding
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.components.Legend
@@ -27,18 +28,20 @@ class ProgressFragment : Fragment() {
     private var _binding: FragmentProgressBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: ProgressViewModel
+    private lateinit var preferences: Preferences
 
     private lateinit var barChart: BarChart
     private lateinit var barData: BarData
     private lateinit var barDataSet: BarDataSet
     private lateinit var barEntriesList: ArrayList<BarEntry>
-    private val labels = arrayOf("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
+    private val labels = arrayOf("Sen", "Sel", "Rab", "Kam", "Jum", "Sab", "Min")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentProgressBinding.inflate(inflater, container, false)
+        preferences = Preferences(requireContext())
         return binding.root
     }
 
@@ -69,12 +72,11 @@ class ProgressFragment : Fragment() {
         }
 
         fetchCaloriesData()
-        updateDateRange()  // Call updateDateRange here
+        updateDateRange()
     }
 
     private fun fetchCaloriesData() {
-        val authorization = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJ1cm46YXVkaWVuY2U6dGVzdCIsImlzcyI6InVybjppc3N1ZXI6dGVzdCIsInN1YiI6IlVZWnA3ZS1ZRHZFd0pXMHAiLCJpYXQiOjE3MTgzNzg1NzR9.5kUX07vwT7xNQLTAIDimRAb6UGIDXiyczHjbg5Gz4bQ"
-        viewModel.fetchCaloriesData(authorization)
+        viewModel.fetchCaloriesData("Bearer ${preferences.getToken().toString()}")
     }
 
     private fun updateBarChart(weeklyCalories: Map<String, Int>) {
@@ -98,15 +100,22 @@ class ProgressFragment : Fragment() {
         xAxis.granularity = 1f
         xAxis.labelCount = labels.size
 
+        val yAxisLeft = barChart.axisLeft
+        yAxisLeft.axisMinimum = 0f
+        yAxisLeft.axisMaximum = 5000f
+
+        val yAxisRight = barChart.axisRight
+        yAxisRight.setDrawLabels(false)
+
         val legend: Legend = barChart.legend
         legend.isEnabled = true
 
-        barChart.invalidate() // refresh
+        barChart.invalidate()
     }
 
     private fun updateDateRange() {
         val calendar = Calendar.getInstance()
-        calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY)
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
         val startDate = calendar.time
 
         calendar.add(Calendar.DAY_OF_WEEK, 6)
@@ -116,6 +125,7 @@ class ProgressFragment : Fragment() {
         val dateRange = "${dateFormat.format(startDate)} - ${dateFormat.format(endDate)}"
         binding.tvDate.text = dateRange
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

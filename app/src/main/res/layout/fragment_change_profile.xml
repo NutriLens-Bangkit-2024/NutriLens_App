@@ -72,6 +72,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/changeProfileText">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edt_changeUsername"
+                    android:background="@drawable/bg_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -97,6 +98,7 @@
                     android:id="@+id/edt_oldPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/bg_edit_text"
                     android:ems="10"
                     android:inputType="textPassword"
                     android:hint="Password Lama"
@@ -120,6 +122,7 @@
                     android:id="@+id/edt_changePassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/bg_edit_text"
                     android:ems="10"
                     android:inputType="textPassword"
                     android:hint="Password Baru"
@@ -143,6 +146,7 @@
                     android:id="@+id/edt_confirmPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/bg_edit_text"
                     android:ems="10"
                     android:inputType="textPassword"
                     android:hint="Ketik Ulang Password Baru"
