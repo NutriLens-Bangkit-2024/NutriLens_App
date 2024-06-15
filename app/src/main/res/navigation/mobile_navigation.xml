@@ -18,6 +18,12 @@
         tools:layout="@layout/fragment_progress" />
 
     <fragment
+        android:id="@+id/navigation_scanner"
+        android:name="com.capstone.nutrilens.ui.camera.CameraFragment"
+        android:label="@string/title_scan"
+        tools:layout="@layout/fragment_camera" />
+
+    <fragment
         android:id="@+id/navigation_recipe"
         android:name="com.capstone.nutrilens.ui.recipe.RecipeFragment"
         android:label="@string/title_recipe"

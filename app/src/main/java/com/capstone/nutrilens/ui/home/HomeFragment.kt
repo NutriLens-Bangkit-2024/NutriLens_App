@@ -91,12 +91,14 @@ class HomeFragment : Fragment() {
         recipeAdapter.setOnItemClickCallback(object: RecipeBesarAdapter.OnItemClickCallback{
             override fun onItemClicked(recipe: RecipesItem, options: ActivityOptionsCompat) {
                 val recipeDetailIntent = Intent(requireContext(), RecipeDetailActivity::class.java)
-                recipeDetailIntent.putExtra(RecipeDetailActivity.EXTRA_RECIPE_PHOTO, recipe.image)
-                recipeDetailIntent.putExtra(RecipeDetailActivity.EXTRA_RECIPE_NAME, recipe.name)
-                recipeDetailIntent.putExtra(RecipeDetailActivity.EXTRA_RECIPE_CALORIES, recipe.calories)
-                recipeDetailIntent.putExtra(RecipeDetailActivity.EXTRA_RECIPE_INGREDIENTS, recipe.ingredient.joinToString(","))
-                recipeDetailIntent.putExtra(RecipeDetailActivity.EXTRA_RECIPE_DIRECTIONS, recipe.directions.joinToString(","))
-                startActivity(recipeDetailIntent, options.toBundle())
+                recipeDetailIntent.putExtra(RecipeDetailActivity.EXTRA_RECIPE_PHOTO,recipe.image)
+                recipeDetailIntent.putExtra(RecipeDetailActivity.EXTRA_RECIPE_NAME,recipe.name)
+                recipeDetailIntent.putExtra(RecipeDetailActivity.EXTRA_RECIPE_CALORIES,recipe.calories)
+                recipeDetailIntent.putStringArrayListExtra(RecipeDetailActivity.EXTRA_RECIPE_INGREDIENTS,
+                    ArrayList(recipe.ingredient)
+                )
+                recipeDetailIntent.putStringArrayListExtra(RecipeDetailActivity.EXTRA_RECIPE_DIRECTIONS,ArrayList(recipe.directions))
+                startActivity(recipeDetailIntent,options.toBundle())
             }
         })
     }
