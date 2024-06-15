@@ -20,6 +20,7 @@ class NewsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportActionBar?.hide()
         enableEdgeToEdge()
         binding = ActivityNewsBinding.inflate(layoutInflater)
         setContentView(binding.root)

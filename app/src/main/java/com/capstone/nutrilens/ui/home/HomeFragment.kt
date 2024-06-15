@@ -66,13 +66,6 @@ class HomeFragment : Fragment() {
             } ?: Log.d("HomeFragment", "News data is null")
         })
 
-        // Inisialisasi RecyclerView untuk resep
-        recipeAdapter = RecipeBesarAdapter()
-        binding.rvRecipeHome.apply {
-            layoutManager = LinearLayoutManager(context)
-            adapter = recipeAdapter
-        }
-
         // Ambil data resep
         val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJ1cm46YXVkaWVuY2U6dGVzdCIsImlzcyI6InVybjppc3N1ZXI6dGVzdCIsInN1YiI6IlVZWnA3ZS1ZRHZFd0pXMHAiLCJpYXQiOjE3MTgzNzg1NzR9.5kUX07vwT7xNQLTAIDimRAb6UGIDXiyczHjbg5Gz4bQ"
         recipeViewModel.getRecipes(token).observe(viewLifecycleOwner) {
@@ -87,8 +80,10 @@ class HomeFragment : Fragment() {
     }
 
     private fun setRecipeData(recipe: List<RecipesItem>) {
-        recipeAdapter.submitList(recipe)
-        recipeAdapter.setOnItemClickCallback(object: RecipeBesarAdapter.OnItemClickCallback{
+        val adapter = RecipeBesarAdapter()
+        adapter.submitList(recipe)
+        binding.rvRecipeHome.adapter = adapter
+        adapter.setOnItemClickCallback(object: RecipeBesarAdapter.OnItemClickCallback{
             override fun onItemClicked(recipe: RecipesItem, options: ActivityOptionsCompat) {
                 val recipeDetailIntent = Intent(requireContext(), RecipeDetailActivity::class.java)
                 recipeDetailIntent.putExtra(RecipeDetailActivity.EXTRA_RECIPE_PHOTO,recipe.image)
@@ -101,6 +96,7 @@ class HomeFragment : Fragment() {
                 startActivity(recipeDetailIntent,options.toBundle())
             }
         })
+
     }
 }
 
