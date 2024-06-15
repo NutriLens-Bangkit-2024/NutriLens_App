@@ -40,15 +40,13 @@
         android:id="@+id/emailTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:alpha="0"
         android:layout_marginTop="20dp"
         android:text="@string/email"
         android:fontFamily="@font/poppins_bold"
         android:textColor="@color/primary"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@id/register_email_field"
-        app:layout_constraintTop_toBottomOf="@id/register_app_name"
-        tools:alpha="100" />
+        app:layout_constraintTop_toBottomOf="@id/register_app_name" />
 
     <com.capstone.nutrilens.ui.customview.EmailEt
         android:id="@+id/register_email_field"
@@ -67,15 +65,13 @@
         android:id="@+id/usernameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:alpha="0"
         android:layout_marginTop="20dp"
         android:text="@string/name"
         android:fontFamily="@font/poppins_bold"
         android:textColor="@color/primary"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@id/register_name_field"
-        app:layout_constraintTop_toBottomOf="@id/register_email_field"
-        tools:alpha="100" />
+        app:layout_constraintTop_toBottomOf="@id/register_email_field" />
 
     <com.capstone.nutrilens.ui.customview.UsernameEt
         android:id="@+id/register_name_field"
@@ -93,15 +89,13 @@
         android:id="@+id/passwordTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:alpha="0"
         android:layout_marginTop="20dp"
         android:text="@string/password"
         android:fontFamily="@font/poppins_bold"
         android:textColor="@color/primary"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@id/register_password_field"
-        app:layout_constraintTop_toBottomOf="@id/register_name_field"
-        tools:alpha="100" />
+        app:layout_constraintTop_toBottomOf="@id/register_name_field" />
 
     <com.capstone.nutrilens.ui.customview.PasswordEt
         android:id="@+id/register_password_field"
@@ -122,7 +116,7 @@
         android:fontFamily="@font/poppins_bold"
         android:textSize="16sp"
         android:textColor="@color/white"
-        android:text="@string/mengerti"
+        android:text="@string/register"
         android:backgroundTint="@color/primary"
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
