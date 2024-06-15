@@ -4,19 +4,21 @@ import com.google.gson.annotations.SerializedName
 
 data class RecipeResponse(
 
-	@field:SerializedName("data")
-	val data: Data,
+    @field:SerializedName("data")
+    val data: Data,
 
     @field:SerializedName("status")
     val status: String
 )
 
 data class Data(
+
     @field:SerializedName("recipes")
     val recipes: List<RecipesItem>
 )
 
 data class RecipesItem(
+
     @field:SerializedName("createdAt")
     val createdAt: String,
 
