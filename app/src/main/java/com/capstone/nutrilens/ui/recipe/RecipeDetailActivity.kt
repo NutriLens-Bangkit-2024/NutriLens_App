@@ -13,14 +13,18 @@ class RecipeDetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRecipeDetailBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+//        enableEdgeToEdge()
         supportActionBar?.hide()
         binding = ActivityRecipeDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.tvTitle.text = intent.getStringExtra(EXTRA_RECIPE_NAME)
         binding.tvCalories.text = intent.getStringExtra(EXTRA_RECIPE_CALORIES)
-        binding.tvDescriptionBahan.text = intent.getStringExtra(EXTRA_RECIPE_INGREDIENTS)
-        binding.tvDescriptionTahapan.text = intent.getStringExtra(EXTRA_RECIPE_DIRECTIONS)
+        val ingredients = intent.getStringArrayListExtra(EXTRA_RECIPE_INGREDIENTS)
+        binding.tvDescriptionBahan.text = ingredients?.joinToString ("\n")
+        val directions = intent.getStringArrayListExtra(EXTRA_RECIPE_DIRECTIONS)
+        binding.tvDescriptionTahapan.text = directions?.joinToString(separator = "\n"){
+            "\u2022 $it"
+        }
         Glide.with(this@RecipeDetailActivity)
             .load(intent.getStringExtra(EXTRA_RECIPE_PHOTO))
             .centerCrop()

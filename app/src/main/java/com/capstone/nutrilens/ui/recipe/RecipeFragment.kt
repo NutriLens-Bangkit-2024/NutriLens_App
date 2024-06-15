@@ -58,11 +58,13 @@ class RecipeFragment : Fragment() {
         adapter.setOnItemClickCallback(object: RecipeBesarAdapter.OnItemClickCallback{
             override fun onItemClicked(recipe: RecipesItem, options: ActivityOptionsCompat) {
                 val recipeDetailIntent = Intent(requireContext(),RecipeDetailActivity::class.java)
-                recipeDetailIntent.putExtra(RecipeDetailActivity.EXTRA_RECIPE_PHOTO,"https://www.allrecipes.com/thmb/9aWCdbfttLcsW2dFQWwVQBGJM3E=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/AR-236973-CreamyAlfredoSauce-0238-4x3-1-01e7091f47ae452d991abe32cbed5921.jpg")
+                recipeDetailIntent.putExtra(RecipeDetailActivity.EXTRA_RECIPE_PHOTO,recipe.image)
                 recipeDetailIntent.putExtra(RecipeDetailActivity.EXTRA_RECIPE_NAME,recipe.name)
                 recipeDetailIntent.putExtra(RecipeDetailActivity.EXTRA_RECIPE_CALORIES,recipe.calories)
-                recipeDetailIntent.putExtra(RecipeDetailActivity.EXTRA_RECIPE_INGREDIENTS,recipe.ingredient)
-                recipeDetailIntent.putExtra(RecipeDetailActivity.EXTRA_RECIPE_DIRECTIONS,recipe.directions)
+                recipeDetailIntent.putStringArrayListExtra(RecipeDetailActivity.EXTRA_RECIPE_INGREDIENTS,
+                    ArrayList(recipe.ingredient)
+                )
+                recipeDetailIntent.putStringArrayListExtra(RecipeDetailActivity.EXTRA_RECIPE_DIRECTIONS,ArrayList(recipe.directions))
                 startActivity(recipeDetailIntent,options.toBundle())
             }
         })

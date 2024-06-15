@@ -28,6 +28,7 @@ import com.capstone.nutrilens.ui.recipe.RecipeViewModelFactory
 class HomeFragment : Fragment() {
     private lateinit var newsViewModel: NewsViewModel
     private lateinit var newsAdapter: NewsAdapter
+    private lateinit var recipeAdapter: RecipeBesarAdapter
     private lateinit var binding: FragmentHomeBinding
 
     private val recipeViewModel by viewModels<RecipeViewModel> {
@@ -49,7 +50,7 @@ class HomeFragment : Fragment() {
         val repository = NewsRepository(ApiService.instanceRetrofit)
         newsViewModel = ViewModelProvider(this, ViewModelFactory(repository))[NewsViewModel::class.java]
 
-        // Inisialisasi RecyclerView
+        // Inisialisasi RecyclerView untuk berita
         newsAdapter = NewsAdapter()
         binding.rvNewsHome.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
@@ -57,7 +58,7 @@ class HomeFragment : Fragment() {
         }
 
         // Ambil data berita
-        val authorization = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJ1cm46YXVkaWVuY2U6dGVzdCIsImlzcyI6InVybjppc3N1ZXI6dGVzdCIsInN1YiI6IlpkXzczQ2ktU2dpanVzSU0iLCJleHAiOjE3MTgzNDMxMDQsImlhdCI6MTcxODI1NjcwNH0.kEDTcIlg60nLEtxDg_42poFf5gKaeL90-5kd7LVWwrw"
+        val authorization = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJ1cm46YXVkaWVuY2U6dGVzdCIsImlzcyI6InVybjppc3N1ZXI6dGVzdCIsInN1YiI6IlVZWnA3ZS1ZRHZFd0pXMHAiLCJpYXQiOjE3MTgzNzg1NzR9.5kUX07vwT7xNQLTAIDimRAb6UGIDXiyczHjbg5Gz4bQ"
         newsViewModel.getAllNews(authorization).observe(viewLifecycleOwner, Observer { response ->
             response?.data?.news?.let { newsList ->
                 Log.d("HomeFragment", "News data received: $newsList")
@@ -65,35 +66,41 @@ class HomeFragment : Fragment() {
             } ?: Log.d("HomeFragment", "News data is null")
         })
 
-        val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJ1cm46YXVkaWVuY2U6dGVzdCIsImlzcyI6InVybjppc3N1ZXI6dGVzdCIsInN1YiI6Ik84TmV0ZDVhbGRSaXRyTjQiLCJleHAiOjE3MTgzNzIyNjIsImlhdCI6MTcxODI4NTg2Mn0.feP0QqKY31IgZiLeuc0K7jSrkUmegOgJA8n21nLFf38"
-        recipeViewModel.getRecipes(token).observe(viewLifecycleOwner){
-            recipeViewModel.recipeData().observe(viewLifecycleOwner){recipe->
-                if(recipe!=null){
-                    setRecipeData(recipe)
-                }else{
-                    Toast.makeText(requireContext(),"Gagal mendapatkan data", Toast.LENGTH_LONG).show()
+        // Inisialisasi RecyclerView untuk resep
+        recipeAdapter = RecipeBesarAdapter()
+        binding.rvRecipeHome.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = recipeAdapter
+        }
+
+        // Ambil data resep
+        val token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJ1cm46YXVkaWVuY2U6dGVzdCIsImlzcyI6InVybjppc3N1ZXI6dGVzdCIsInN1YiI6IlVZWnA3ZS1ZRHZFd0pXMHAiLCJpYXQiOjE3MTgzNzg1NzR9.5kUX07vwT7xNQLTAIDimRAb6UGIDXiyczHjbg5Gz4bQ"
+        recipeViewModel.getRecipes(token).observe(viewLifecycleOwner) {
+            recipeViewModel.recipeData().observe(viewLifecycleOwner) { recipe ->
+                if (recipe != null) {
+                    setRecipeData((recipe))
+                } else {
+                    Toast.makeText(requireContext(), "Gagal mendapatkan data", Toast.LENGTH_LONG).show()
                 }
             }
         }
     }
 
     private fun setRecipeData(recipe: List<RecipesItem>) {
-        val adapter = RecipeBesarAdapter()
-        adapter.submitList(recipe)
-
-        binding.rvRecipeHome.adapter = adapter
-        adapter.setOnItemClickCallback(object: RecipeBesarAdapter.OnItemClickCallback{
+        recipeAdapter.submitList(recipe)
+        recipeAdapter.setOnItemClickCallback(object: RecipeBesarAdapter.OnItemClickCallback{
             override fun onItemClicked(recipe: RecipesItem, options: ActivityOptionsCompat) {
                 val recipeDetailIntent = Intent(requireContext(), RecipeDetailActivity::class.java)
-                recipeDetailIntent.putExtra(RecipeDetailActivity.EXTRA_RECIPE_PHOTO,"https://www.allrecipes.com/thmb/9aWCdbfttLcsW2dFQWwVQBGJM3E=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/AR-236973-CreamyAlfredoSauce-0238-4x3-1-01e7091f47ae452d991abe32cbed5921.jpg")
-                recipeDetailIntent.putExtra(RecipeDetailActivity.EXTRA_RECIPE_NAME,recipe.name)
-                recipeDetailIntent.putExtra(RecipeDetailActivity.EXTRA_RECIPE_CALORIES,recipe.calories)
-                recipeDetailIntent.putExtra(RecipeDetailActivity.EXTRA_RECIPE_INGREDIENTS,recipe.ingredient)
-                recipeDetailIntent.putExtra(RecipeDetailActivity.EXTRA_RECIPE_DIRECTIONS,recipe.directions)
-                startActivity(recipeDetailIntent,options.toBundle())
+                recipeDetailIntent.putExtra(RecipeDetailActivity.EXTRA_RECIPE_PHOTO, recipe.image)
+                recipeDetailIntent.putExtra(RecipeDetailActivity.EXTRA_RECIPE_NAME, recipe.name)
+                recipeDetailIntent.putExtra(RecipeDetailActivity.EXTRA_RECIPE_CALORIES, recipe.calories)
+                recipeDetailIntent.putExtra(RecipeDetailActivity.EXTRA_RECIPE_INGREDIENTS, recipe.ingredient.joinToString(","))
+                recipeDetailIntent.putExtra(RecipeDetailActivity.EXTRA_RECIPE_DIRECTIONS, recipe.directions.joinToString(","))
+                startActivity(recipeDetailIntent, options.toBundle())
             }
         })
     }
+}
 
 //    private var _binding: FragmentHomeBinding? = null
 
@@ -182,4 +189,3 @@ class HomeFragment : Fragment() {
 //        super.onDestroyView()
 //        _binding = null
 //    }
-}

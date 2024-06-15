@@ -1,10 +1,16 @@
 package com.capstone.nutrilens.ui.progress
 
+import android.icu.text.SimpleDateFormat
+import android.icu.util.Calendar
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import com.capstone.nutrilens.data.api.ApiService
+import com.capstone.nutrilens.data.util.NetworkResult
 import com.capstone.nutrilens.databinding.FragmentProgressBinding
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.components.Legend
@@ -14,24 +20,22 @@ import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.utils.ColorTemplate
+import java.util.Locale
 
 class ProgressFragment : Fragment() {
 
     private var _binding: FragmentProgressBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
+    private lateinit var viewModel: ProgressViewModel
 
-    lateinit var barChart: BarChart
-    lateinit var barData: BarData
-    lateinit var barDataSet: BarDataSet
-    lateinit var barEntriesList: ArrayList<BarEntry>
+    private lateinit var barChart: BarChart
+    private lateinit var barData: BarData
+    private lateinit var barDataSet: BarDataSet
+    private lateinit var barEntriesList: ArrayList<BarEntry>
     private val labels = arrayOf("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentProgressBinding.inflate(inflater, container, false)
@@ -40,14 +44,51 @@ class ProgressFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val repository = CaloriesRepository(ApiService.instanceRetrofit)
+        val factory = ProgressViewModelFactory(repository)
+        viewModel = ViewModelProvider(this, factory)[ProgressViewModel::class.java]
+
         barChart = binding.barChart
-        getBarChartData()
-        barDataSet = BarDataSet(barEntriesList,"Hari")
+
+        viewModel.caloriesResult.observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is NetworkResult.Success -> {
+                    val weeklyCalories = result.data?.data?.weeklyCalories
+                    if (weeklyCalories != null) {
+                        updateBarChart(weeklyCalories)
+                    }
+                }
+                is NetworkResult.Error -> {
+                    Toast.makeText(context, "Error: ${result.exception}", Toast.LENGTH_SHORT).show()
+                }
+                is NetworkResult.Loading -> {
+                    // Handle loading state if needed
+                }
+            }
+        }
+
+        fetchCaloriesData()
+        updateDateRange()  // Call updateDateRange here
+    }
+
+    private fun fetchCaloriesData() {
+        val authorization = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJ1cm46YXVkaWVuY2U6dGVzdCIsImlzcyI6InVybjppc3N1ZXI6dGVzdCIsInN1YiI6IlVZWnA3ZS1ZRHZFd0pXMHAiLCJpYXQiOjE3MTgzNzg1NzR9.5kUX07vwT7xNQLTAIDimRAb6UGIDXiyczHjbg5Gz4bQ"
+        viewModel.fetchCaloriesData(authorization)
+    }
+
+    private fun updateBarChart(weeklyCalories: Map<String, Int>) {
+        barEntriesList = ArrayList()
+        labels.forEachIndexed { index, day ->
+            val calories = weeklyCalories[day] ?: 0
+            barEntriesList.add(BarEntry(index.toFloat(), calories.toFloat()))
+        }
+
+        barDataSet = BarDataSet(barEntriesList, "Hari")
         barData = BarData(barDataSet)
         barChart.data = barData
-//        barDataSet.setColors(resources.getColor(R.color.nutriLens_green))
         barDataSet.colors = ColorTemplate.MATERIAL_COLORS.toList()
-        barDataSet.valueTextSize=20f
+        barDataSet.valueTextSize = 20f
         barChart.description.isEnabled = false
 
         val xAxis: XAxis = barChart.xAxis
@@ -59,18 +100,21 @@ class ProgressFragment : Fragment() {
 
         val legend: Legend = barChart.legend
         legend.isEnabled = true
+
+        barChart.invalidate() // refresh
     }
 
-    private fun getBarChartData() {
-        barEntriesList = ArrayList()
-        barEntriesList.add(BarEntry(0f, 20f))
-        barEntriesList.add(BarEntry(1f, 10f))
-        barEntriesList.add(BarEntry(2f, 2f))
-        barEntriesList.add(BarEntry(3f, 5f))
-        barEntriesList.add(BarEntry(4f, 7f))
-        barEntriesList.add(BarEntry(5f, 20f))
-        barEntriesList.add(BarEntry(6f, 20f))
+    private fun updateDateRange() {
+        val calendar = Calendar.getInstance()
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY)
+        val startDate = calendar.time
 
+        calendar.add(Calendar.DAY_OF_WEEK, 6)
+        val endDate = calendar.time
+
+        val dateFormat = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
+        val dateRange = "${dateFormat.format(startDate)} - ${dateFormat.format(endDate)}"
+        binding.tvDate.text = dateRange
     }
 
     override fun onDestroyView() {

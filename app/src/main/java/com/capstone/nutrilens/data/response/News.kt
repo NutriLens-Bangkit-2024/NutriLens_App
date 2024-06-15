@@ -22,5 +22,9 @@ data class News(
     val content: String? = null,
 
     @field:SerializedName("updatedAt")
-    val updatedAt: String? = null
+    val updatedAt: String? = null,
+
+    @field:SerializedName("image")
+    val image: String? = null
 ) : Parcelable
+

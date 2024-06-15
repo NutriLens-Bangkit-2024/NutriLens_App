@@ -11,16 +11,25 @@ data class RecipeResponse(
     val status: String
 )
 
+data class Data(
+
+    @field:SerializedName("recipes")
+    val recipes: List<RecipesItem>
+)
+
 data class RecipesItem(
 
     @field:SerializedName("createdAt")
     val createdAt: String,
 
+    @field:SerializedName("image")
+    val image: String,
+
     @field:SerializedName("ingredient")
-    val ingredient: String,
+    val ingredient: List<String>,
 
     @field:SerializedName("directions")
-    val directions: String,
+    val directions: List<String>,
 
     @field:SerializedName("name")
     val name: String,
@@ -33,10 +42,4 @@ data class RecipesItem(
 
     @field:SerializedName("updatedAt")
     val updatedAt: String
-)
-
-data class Data(
-
-    @field:SerializedName("recipes")
-    val recipes: List<RecipesItem>
 )
