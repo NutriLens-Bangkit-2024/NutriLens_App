@@ -39,7 +39,8 @@ interface ApiConfig {
 
     @GET("user/{id}")
     suspend fun getUser(
-        @Header("Authorization") token: String
+        @Header("Authorization") token: String,
+        @Path("id") id: String
     ): Response<UserResponse>
 
     @PUT("user/{id}")

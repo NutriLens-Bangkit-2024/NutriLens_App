@@ -82,14 +82,15 @@ class ProfileFragment : Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             val token = preferences.getToken()
-            if (token != null) {
-                profileViewModel.getProfile("Bearer $token").observe(viewLifecycleOwner, Observer { userResult ->
+            val id = preferences.getUserId()
+            if (token != null && id != null) {
+                profileViewModel.getProfile("Bearer $token", id).observe(viewLifecycleOwner, Observer { userResult ->
                     when (userResult) {
                         is NetworkResult.Success -> {
                             val user = userResult.data
                             if (user != null) {
-                                binding.profileUsernameText.text = user.name
-                                binding.emailText.text = user.email
+                                binding.profileUsernameText.text = user.name ?: ""
+                                binding.emailText.text = user.email ?: ""
                             } else {
                                 Toast.makeText(requireContext(), "User data is null", Toast.LENGTH_SHORT).show()
                             }

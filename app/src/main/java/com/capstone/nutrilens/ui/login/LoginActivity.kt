@@ -47,6 +47,9 @@ class LoginActivity : AppCompatActivity() {
                     if (login?.status == "success") {
                         login.token?.let { token ->
                             preferences.saveToken(token)
+                            login.id?.let { id ->
+                                preferences.saveUserId(id)
+                            }
                             val intent = Intent(this, MainActivity::class.java)
                             startActivity(intent)
                             Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show()

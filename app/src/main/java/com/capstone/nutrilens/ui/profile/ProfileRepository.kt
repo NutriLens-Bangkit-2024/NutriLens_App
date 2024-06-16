@@ -14,22 +14,24 @@ import retrofit2.Response
 class ProfileRepository private constructor(
     private val apiService: ApiConfig
 ){
-    suspend fun getProfile(token: String): LiveData<NetworkResult<UserResponse>> {
-        val data = MutableLiveData<NetworkResult<UserResponse>>()
-        withContext(Dispatchers.IO) {
-            try {
-                val authorization = "Bearer $token"
-                val response = apiService.getUser(authorization)
-                if (response.isSuccessful) {
-                    data.postValue(NetworkResult.Success(response.body()!!))
-                } else {
-                    data.postValue(NetworkResult.Error("Failed to get user profile"))
-                }
-            } catch (e: Exception) {
-                data.postValue(NetworkResult.Error(e.message ?: "An error occurred"))
+    suspend fun getProfile(authorization: String, userId: String): LiveData<NetworkResult<UserResponse>> {
+        val result = MutableLiveData<NetworkResult<UserResponse>>()
+        result.postValue(NetworkResult.Loading(true))
+
+        try {
+            val response = apiService.getUser(authorization, userId)
+            if (response.isSuccessful) {
+                result.postValue(NetworkResult.Success(response.body()!!))
+            } else {
+                val errorBody = response.errorBody()?.string()
+                result.postValue(NetworkResult.Error(errorBody ?: "Unknown error"))
             }
+        } catch (e: Exception) {
+            result.postValue(NetworkResult.Error(e.message ?: "Unknown error"))
+        } finally {
+            result.postValue(NetworkResult.Loading(false))
         }
-        return data
+        return result
     }
 
     companion object {

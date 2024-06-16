@@ -10,7 +10,10 @@ data class LoginResponse(
     val status: String? = null,
 
     @field:SerializedName("token")
-    val token: String? = null
+    val token: String? = null,
+
+    @field:SerializedName("id")
+    val id: String? = null
 ) : Parcelable
 
 
