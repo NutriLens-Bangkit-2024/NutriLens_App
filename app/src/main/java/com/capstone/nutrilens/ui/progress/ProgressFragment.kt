@@ -60,6 +60,7 @@ class ProgressFragment : Fragment() {
                     val weeklyCalories = result.data?.data?.weeklyCalories
                     if (weeklyCalories != null) {
                         updateBarChart(weeklyCalories)
+                        updateDateRange()
                     }
                 }
                 is NetworkResult.Error -> {
@@ -81,8 +82,10 @@ class ProgressFragment : Fragment() {
 
     private fun updateBarChart(weeklyCalories: Map<String, Int>) {
         barEntriesList = ArrayList()
+        var totalCalories = 0
         labels.forEachIndexed { index, day ->
             val calories = weeklyCalories[day] ?: 0
+            totalCalories += calories // Calculate total calories for the week
             barEntriesList.add(BarEntry(index.toFloat(), calories.toFloat()))
         }
 
@@ -115,12 +118,10 @@ class ProgressFragment : Fragment() {
 
     private fun updateDateRange() {
         val calendar = Calendar.getInstance()
-        calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY) // Set to Monday
         val startDate = calendar.time
-
         calendar.add(Calendar.DAY_OF_WEEK, 6)
         val endDate = calendar.time
-
         val dateFormat = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
         val dateRange = "${dateFormat.format(startDate)} - ${dateFormat.format(endDate)}"
         binding.tvDate.text = dateRange
