@@ -126,7 +126,6 @@ class ProgressFragment : Fragment() {
         binding.tvDate.text = dateRange
     }
 
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

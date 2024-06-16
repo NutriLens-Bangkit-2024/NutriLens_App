@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.capstone.nutrilens.R
+import com.capstone.nutrilens.data.api.ApiConfig
 import com.capstone.nutrilens.data.api.ApiService
 import com.capstone.nutrilens.data.util.NetworkResult
 import com.capstone.nutrilens.data.util.Preferences
@@ -28,6 +29,10 @@ import com.capstone.nutrilens.ui.progress.ProgressViewModelFactory
 import com.capstone.nutrilens.ui.recipe.RecipeViewModel
 import com.capstone.nutrilens.ui.recipe.RecipeViewModelFactory
 import kotlinx.coroutines.launch
+import okhttp3.ResponseBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import javax.inject.Inject
 
 class ProfileFragment : Fragment() {
@@ -40,6 +45,7 @@ class ProfileFragment : Fragment() {
     }
 
     private lateinit var preferences: Preferences
+    private lateinit var apiConfig: ApiConfig
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,6 +53,7 @@ class ProfileFragment : Fragment() {
     ): View {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         preferences = Preferences(requireContext())
+        apiConfig = ApiService.instanceRetrofit
         return binding.root
     }
 
@@ -118,11 +125,33 @@ class ProfileFragment : Fragment() {
         }
 
         dialogBinding.btnKeluarYakin.setOnClickListener {
-            preferences.clearSession()
-            activity?.finishAffinity()
+            logoutUser(dialog)
         }
 
         dialog.show()
+    }
+
+    private fun logoutUser(dialog: AlertDialog) {
+        val token = preferences.getToken()
+        if (token != null) {
+            apiConfig.logout("Bearer $token").enqueue(object : Callback<ResponseBody> {
+                override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                    if (response.isSuccessful) {
+                        preferences.clearSession()
+                        dialog.dismiss()
+                        activity?.finishAffinity()
+                    } else {
+                        Toast.makeText(requireContext(), "Logout failed", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                    Toast.makeText(requireContext(), "Error: ${t.message}", Toast.LENGTH_SHORT).show()
+                }
+            })
+        } else {
+            Toast.makeText(requireContext(), "Token not found", Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun onDestroyView() {

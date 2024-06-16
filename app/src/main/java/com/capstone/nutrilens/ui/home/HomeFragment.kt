@@ -69,8 +69,8 @@ class HomeFragment : Fragment() {
         })
 
         // Ambil data resep
-//        val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJ1cm46YXVkaWVuY2U6dGVzdCIsImlzcyI6InVybjppc3N1ZXI6dGVzdCIsInN1YiI6IlVZWnA3ZS1ZRHZFd0pXMHAiLCJpYXQiOjE3MTgzNzg1NzR9.5kUX07vwT7xNQLTAIDimRAb6UGIDXiyczHjbg5Gz4bQ"
-        recipeViewModel.getRecipes("Bearer ${preferences.getToken().toString()}").observe(viewLifecycleOwner) {
+        val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJ1cm46YXVkaWVuY2U6dGVzdCIsImlzcyI6InVybjppc3N1ZXI6dGVzdCIsInN1YiI6IlVZWnA3ZS1ZRHZFd0pXMHAiLCJpYXQiOjE3MTgzNzg1NzR9.5kUX07vwT7xNQLTAIDimRAb6UGIDXiyczHjbg5Gz4bQ"
+        recipeViewModel.getRecipes(token).observe(viewLifecycleOwner) {
             recipeViewModel.recipeData().observe(viewLifecycleOwner) { recipe ->
                 if (recipe != null) {
                     setRecipeData((recipe))

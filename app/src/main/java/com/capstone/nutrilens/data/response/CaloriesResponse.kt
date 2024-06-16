@@ -21,5 +21,3 @@ data class CaloriesData(
     @field:SerializedName("totalCalories")
     val totalCalories: Int? = null
 ) : Parcelable
-
-

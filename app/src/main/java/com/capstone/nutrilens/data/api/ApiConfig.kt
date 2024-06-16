@@ -78,12 +78,6 @@ interface ApiConfig {
         @Path("id") id: String
     ): Call<NewsDetailApiResponse>
 
-//    @GET("recipes/{recipeId}")
-//    fun getRecipe(
-//        @Header("Authorization") authorization: String,
-//        @Path("recipeId") recipeId: String
-//    ): Call<RecipeResponse>
-
     @GET("recipes")
     suspend fun getRecipes(
         @Header("Authorization") token:String
