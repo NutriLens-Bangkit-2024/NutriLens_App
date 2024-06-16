@@ -72,5 +72,10 @@
     <string name="jenis_nutrisi">Kalsium</string>
     <string name="gram">gram\n</string>
     <string name="process_nutriscore">Process Nutriscore!</string>
+    <string name="takaran_saji">Takaran Saji</string>
+    <string name="energi">Energi</string>
+    <string name="karbohidrat">Karbohidrat</string>
+    <string name="serat">Serat</string>
+    <string name="natrium">Natrium</string>
 
 </resources>

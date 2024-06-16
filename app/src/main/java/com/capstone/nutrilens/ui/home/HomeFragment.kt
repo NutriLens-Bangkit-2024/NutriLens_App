@@ -15,16 +15,22 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstone.nutrilens.data.api.ApiService
 import com.capstone.nutrilens.data.response.RecipesItem
+import com.capstone.nutrilens.data.util.NetworkResult
 import com.capstone.nutrilens.data.util.Preferences
 import com.capstone.nutrilens.databinding.FragmentHomeBinding
+import com.capstone.nutrilens.ui.login.LoginActivity
 import com.capstone.nutrilens.ui.news.NewsAdapter
 import com.capstone.nutrilens.ui.news.NewsRepository
 import com.capstone.nutrilens.ui.news.NewsViewModel
 import com.capstone.nutrilens.ui.news.ViewModelFactory
+import com.capstone.nutrilens.ui.progress.CaloriesRepository
+import com.capstone.nutrilens.ui.progress.ProgressViewModel
+import com.capstone.nutrilens.ui.progress.ProgressViewModelFactory
 import com.capstone.nutrilens.ui.recipe.RecipeBesarAdapter
 import com.capstone.nutrilens.ui.recipe.RecipeDetailActivity
 import com.capstone.nutrilens.ui.recipe.RecipeViewModel
 import com.capstone.nutrilens.ui.recipe.RecipeViewModelFactory
+import kotlin.math.ceil
 
 class HomeFragment : Fragment() {
     private lateinit var newsViewModel: NewsViewModel
@@ -36,6 +42,8 @@ class HomeFragment : Fragment() {
     private val recipeViewModel by viewModels<RecipeViewModel> {
         RecipeViewModelFactory.getInstance(requireContext())
     }
+
+    private lateinit var caloriesViewModel: ProgressViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,6 +61,24 @@ class HomeFragment : Fragment() {
         // Inisialisasi ViewModel
         val repository = NewsRepository(ApiService.instanceRetrofit)
         newsViewModel = ViewModelProvider(this, ViewModelFactory(repository))[NewsViewModel::class.java]
+
+        caloriesViewModel = ViewModelProvider(this,ProgressViewModelFactory(CaloriesRepository(ApiService.instanceRetrofit)))[ProgressViewModel::class.java]
+        caloriesViewModel.fetchCaloriesData("Bearer ${preferences.getToken().toString()}")
+
+        //ambil data kalori harian
+        caloriesViewModel.caloriesResult.observe(viewLifecycleOwner){result->
+            when(result){
+                is NetworkResult.Loading->Toast.makeText(requireContext(),"Loadinggggggggggggggggggggg",Toast.LENGTH_LONG).show()
+                is NetworkResult.Success->{
+                    val caloriesHarian : List<Int> = result.data?.data?.dailyCalories?.values?.toList()
+                        ?: emptyList()
+                    val latest : Int = ceil( caloriesHarian.last()*100/2500.0).toInt()
+                    binding.calorieProgressBar.progress = latest
+
+                }
+                is NetworkResult.Error-> Toast.makeText(requireContext(),"Error",Toast.LENGTH_LONG).show()
+            }
+        }
 
         // Inisialisasi RecyclerView untuk berita
         newsAdapter = NewsAdapter()

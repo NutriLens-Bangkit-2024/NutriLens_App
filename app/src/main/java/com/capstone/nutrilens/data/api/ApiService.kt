@@ -1,5 +1,6 @@
 package com.capstone.nutrilens.data.api
 
+import com.github.mikephil.charting.BuildConfig
 import com.google.gson.GsonBuilder
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -36,4 +37,23 @@ object ApiService {
 
     val instanceRetrofit: ApiConfig
         get() = client.create(ApiConfig::class.java)
+
+    fun ScanningApiService():ApiConfig{
+        val loggingInterceptor=
+//            HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+            if(BuildConfig.DEBUG) {
+                HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+            } else {
+                HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.NONE)
+            }
+        val client = OkHttpClient.Builder()
+            .addInterceptor(loggingInterceptor)
+            .build()
+        val retrofit = Retrofit.Builder()
+            .baseUrl("https://nutrion-grade-scanning-n62gwjf46q-et.a.run.app/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(client)
+            .build()
+        return retrofit.create(ApiConfig::class.java)
+    }
 }
