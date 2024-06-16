@@ -51,7 +51,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         tools:listitem="@layout/card_recipe_besar"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="2"/>
+        app:spanCount="2"
+        android:paddingBottom="80dp"/>
 
 
 

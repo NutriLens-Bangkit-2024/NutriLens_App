@@ -71,5 +71,6 @@
     <string name="detail_nutrisi_makanan">Detail Nutrisi Makanan</string>
     <string name="jenis_nutrisi">Kalsium</string>
     <string name="gram">gram\n</string>
+    <string name="process_nutriscore">Process Nutriscore!</string>
 
 </resources>

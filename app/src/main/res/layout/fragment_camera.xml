@@ -4,33 +4,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.camera.CameraFragment">
-
-    <androidx.camera.view.PreviewView
-        android:id="@+id/viewFinder"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    tools:context=".ui.camera.CameraFragment"
+    android:paddingBottom="110dp"
+    android:paddingHorizontal="@dimen/dimen_16dp">
 
     <ImageView
-        android:id="@+id/captureImage"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginBottom="50dp"
-        android:padding="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/iv_capturedImage"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:src="@drawable/ic_find_image"
+        android:layout_marginTop="110dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/button_getNutriScore"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_getNutriScore"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_bold"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:text="@string/process_nutriscore"
+        android:backgroundTint="@color/primary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_scan"
-        android:background="@drawable/bg_ic_scanner"/>
-
-    <ImageView
-        android:id="@+id/switchCamera"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="50dp"
-        app:layout_constraintEnd_toEndOf="@+id/viewFinder"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:srcCompat="@drawable/ic_switch_camera" />
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

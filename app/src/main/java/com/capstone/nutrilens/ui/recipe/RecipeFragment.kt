@@ -43,8 +43,8 @@ class RecipeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJ1cm46YXVkaWVuY2U6dGVzdCIsImlzcyI6InVybjppc3N1ZXI6dGVzdCIsInN1YiI6Ik84TmV0ZDVhbGRSaXRyTjQiLCJleHAiOjE3MTgzNzIyNjIsImlhdCI6MTcxODI4NTg2Mn0.feP0QqKY31IgZiLeuc0K7jSrkUmegOgJA8n21nLFf38"
-        recipeViewModel.getRecipes(token).observe(viewLifecycleOwner){
+//        val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJ1cm46YXVkaWVuY2U6dGVzdCIsImlzcyI6InVybjppc3N1ZXI6dGVzdCIsInN1YiI6Ik84TmV0ZDVhbGRSaXRyTjQiLCJleHAiOjE3MTgzNzIyNjIsImlhdCI6MTcxODI4NTg2Mn0.feP0QqKY31IgZiLeuc0K7jSrkUmegOgJA8n21nLFf38"
+        recipeViewModel.getRecipes(preferences.getToken().toString()).observe(viewLifecycleOwner){
             recipeViewModel.recipeData().observe(viewLifecycleOwner){recipe->
                 if(recipe!=null){
                     setRecipeData(recipe)
