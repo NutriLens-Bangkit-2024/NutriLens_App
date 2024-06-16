@@ -71,34 +71,33 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        navController.addOnDestinationChangedListener{_, destination, _ ->
-            when (destination.id) {
-                R.id.navigation_scanner -> navView.visibility = View.GONE
-                else->navView.visibility = View.VISIBLE
+        navView.setOnItemSelectedListener {
+            if (it.itemId == R.id.navigation_scanner){
+                startCamera()
+                true
+            }else{
+                navController.navigate(it.itemId)
+                true
             }
         }
 
     }
 
-//    private fun startCamera() {
-//        currentImageUri = getImageUri(this)
-//        launcherIntentCamera.launch(currentImageUri!!)
-//    }
-//
-//    private val launcherIntentCamera = registerForActivityResult(
-//        ActivityResultContracts.TakePicture()
-//    ) { isSuccess ->
-//        if (isSuccess) {
-//            showImage()
-//        }
-//    }
-//
-//    private fun showImage() {
-//        currentImageUri?.let {
-//            Log.d("Image URI", "showImage: $it")
-////            binding.ivContoh.setImageURI(it)
-//        }
-//    }
+    private fun startCamera() {
+        currentImageUri = getImageUri(this)
+        launcherIntentCamera.launch(currentImageUri!!)
+    }
+
+    private val launcherIntentCamera = registerForActivityResult(
+        ActivityResultContracts.TakePicture()
+    ) { isSuccess ->
+        if (isSuccess) {
+            val bundle = Bundle().apply {
+                putParcelable("image_Uri",currentImageUri)
+            }
+            findNavController(R.id.nav_host_fragment_activity_main).navigate(R.id.navigation_scanner,bundle)
+        }
+    }
 
     companion object{
         private const val REQUIRED_PERMISSION = Manifest.permission.CAMERA
