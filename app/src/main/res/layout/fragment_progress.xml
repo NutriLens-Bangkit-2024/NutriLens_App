@@ -73,6 +73,16 @@
                 android:layout_height="match_parent"
                 android:padding="16dp">
 
+                <ImageButton
+                    android:id="@+id/btnPreviousWeek"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_previous_week"
+                    app:layout_constraintEnd_toStartOf="@id/tv_date"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_date" />
+
                 <TextView
                     android:id="@+id/tv_date"
                     android:layout_width="wrap_content"
@@ -84,6 +94,16 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageButton
+                    android:id="@+id/btnNextWeek"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_next_week"
+                    app:layout_constraintStart_toEndOf="@id/tv_date"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_date" />
 
                 <com.github.mikephil.charting.charts.BarChart
                     android:id="@+id/barChart"

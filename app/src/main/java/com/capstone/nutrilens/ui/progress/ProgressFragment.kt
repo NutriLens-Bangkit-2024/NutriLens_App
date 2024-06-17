@@ -36,6 +36,8 @@ class ProgressFragment : Fragment() {
     private lateinit var barEntriesList: ArrayList<BarEntry>
     private val labels = arrayOf("Sen", "Sel", "Rab", "Kam", "Jum", "Sab", "Min")
 
+    private var currentCalendar: Calendar = Calendar.getInstance()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -57,9 +59,9 @@ class ProgressFragment : Fragment() {
         viewModel.caloriesResult.observe(viewLifecycleOwner) { result ->
             when (result) {
                 is NetworkResult.Success -> {
-                    val weeklyCalories = result.data?.data?.weeklyCalories
-                    if (weeklyCalories != null) {
-                        updateBarChart(weeklyCalories)
+                    val dailyCalories: Map<String, Int> = result.data?.data?.dailyCalories ?: emptyMap()
+                    if (dailyCalories.isNotEmpty()) {
+                        updateBarChart(dailyCalories)
                         updateDateRange()
                     }
                 }
@@ -67,28 +69,44 @@ class ProgressFragment : Fragment() {
                     Toast.makeText(context, "Error: ${result.exception}", Toast.LENGTH_SHORT).show()
                 }
                 is NetworkResult.Loading -> {
-                    // Handle loading state if needed
+//                    Toast.makeText(requireContext(),"Loadinggggggggggggggggggggg",Toast.LENGTH_LONG).show()
                 }
             }
         }
-
+        setNavigationListeners()
         fetchCaloriesData()
         updateDateRange()
     }
 
-    private fun fetchCaloriesData() {
-        viewModel.fetchCaloriesData("Bearer ${preferences.getToken().toString()}")
+    private fun setNavigationListeners() {
+        binding.btnPreviousWeek.setOnClickListener {
+            currentCalendar.add(Calendar.WEEK_OF_YEAR, -1)
+            fetchCaloriesData()
+        }
+        binding.btnNextWeek.setOnClickListener {
+            currentCalendar.add(Calendar.WEEK_OF_YEAR, 1)
+            fetchCaloriesData()
+        }
     }
 
-    private fun updateBarChart(weeklyCalories: Map<String, Int>) {
-        barEntriesList = ArrayList()
-        var totalCalories = 0
-        labels.forEachIndexed { index, day ->
-            val calories = weeklyCalories[day] ?: 0
-            totalCalories += calories // Calculate total calories for the week
-            barEntriesList.add(BarEntry(index.toFloat(), calories.toFloat()))
-        }
+    private fun fetchCaloriesData() {
+        viewModel.fetchCaloriesData("Bearer ${preferences.getToken().toString()}")
+        updateDateRange()
+    }
 
+    private fun updateBarChart(dailyCalories: Map<String, Int>) {
+        barEntriesList = ArrayList()
+
+        val calendar = currentCalendar.clone() as Calendar
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY)
+
+        for (i in 0 until 7) {
+            val date = SimpleDateFormat("EEE MMM dd yyyy", Locale.getDefault()).format(calendar.time)
+            val calories = dailyCalories[date] ?: 0
+            barEntriesList.add(BarEntry(i.toFloat(), calories.toFloat()))
+            calendar.add(Calendar.DAY_OF_WEEK, 1)
+        }
+        
         barDataSet = BarDataSet(barEntriesList, "Hari")
         barData = BarData(barDataSet)
         barChart.data = barData
@@ -117,8 +135,8 @@ class ProgressFragment : Fragment() {
     }
 
     private fun updateDateRange() {
-        val calendar = Calendar.getInstance()
-        calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY) // Set to Monday
+        val calendar = currentCalendar.clone() as Calendar
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY)
         val startDate = calendar.time
         calendar.add(Calendar.DAY_OF_WEEK, 6)
         val endDate = calendar.time
