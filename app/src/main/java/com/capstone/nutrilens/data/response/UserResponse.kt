@@ -6,6 +6,21 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class UserResponse(
+    @field:SerializedName("status")
+    val status: String? = null,
+
+    @field:SerializedName("data")
+    val data: UserData? = null
+) : Parcelable
+
+@Parcelize
+data class UserData(
+    @field:SerializedName("user")
+    val user: User? = null
+) : Parcelable
+
+@Parcelize
+data class User(
     @field:SerializedName("id")
     val id: String? = null,
 
@@ -27,4 +42,5 @@ data class UserResponse(
     @field:SerializedName("updatedAt")
     val updatedAt: String? = null
 ) : Parcelable
+
 

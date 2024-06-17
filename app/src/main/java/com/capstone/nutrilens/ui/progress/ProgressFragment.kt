@@ -69,7 +69,7 @@ class ProgressFragment : Fragment() {
                     Toast.makeText(context, "Error: ${result.exception}", Toast.LENGTH_SHORT).show()
                 }
                 is NetworkResult.Loading -> {
-//                    Toast.makeText(requireContext(),"Loadinggggggggggggggggggggg",Toast.LENGTH_LONG).show()
+                    // Handle loading state
                 }
             }
         }
@@ -90,7 +90,12 @@ class ProgressFragment : Fragment() {
     }
 
     private fun fetchCaloriesData() {
-        viewModel.fetchCaloriesData("Bearer ${preferences.getToken().toString()}")
+        val token = preferences.getToken()
+        if (token != null) {
+            viewModel.fetchCaloriesData("Bearer $token")
+        } else {
+            Toast.makeText(requireContext(), "Token not found", Toast.LENGTH_SHORT).show()
+        }
         updateDateRange()
     }
 
@@ -106,7 +111,7 @@ class ProgressFragment : Fragment() {
             barEntriesList.add(BarEntry(i.toFloat(), calories.toFloat()))
             calendar.add(Calendar.DAY_OF_WEEK, 1)
         }
-        
+
         barDataSet = BarDataSet(barEntriesList, "Hari")
         barData = BarData(barDataSet)
         barChart.data = barData

@@ -50,6 +50,27 @@ class Preferences(context: Context) {
         }
     }
 
+    fun saveOldPassword(passwordHash: String) {
+        try {
+            editor.putString("PASSWORD", passwordHash)
+            editor.apply()
+            Log.d("Preferences", "Password hash saved successfully")
+        } catch (e: Exception) {
+            Log.e("Preferences", "Error saving password hash: ${e.message}")
+        }
+    }
+
+    fun getOldPassword(): String? {
+        return try {
+            val passwordHash = sharedPreferences.getString("PASSWORD", null)
+            Log.d("Preferences", "Password hash retrieved successfully: $passwordHash")
+            passwordHash
+        } catch (e: Exception) {
+            Log.e("Preferences", "Error retrieving password hash: ${e.message}")
+            null
+        }
+    }
+
     fun clearSession(){
         editor.clear()
         editor.apply()

@@ -35,5 +35,6 @@ class LoginViewModel : ViewModel() {
                 loginResponse.value = NetworkResult.Loading(false)
             }
         }
+
     }
 }

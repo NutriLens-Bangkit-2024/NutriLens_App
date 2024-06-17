@@ -50,8 +50,8 @@ interface ApiConfig {
     @PUT("user/{id}")
     suspend fun editUser(
         @Header("Authorization") authorization: String,
-        id: String,
-        editUserRequest: EditUserRequest
+        @Path("id") id: String,
+        @Body editUserRequest: EditUserRequest
     ): Response<UserResponse>
 
     @POST("logout")

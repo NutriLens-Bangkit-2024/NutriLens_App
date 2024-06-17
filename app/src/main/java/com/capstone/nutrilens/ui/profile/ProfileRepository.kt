@@ -11,27 +11,18 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Response
 
-class ProfileRepository private constructor(
-    private val apiService: ApiConfig
-){
-    suspend fun getProfile(authorization: String, userId: String): LiveData<NetworkResult<UserResponse>> {
-        val result = MutableLiveData<NetworkResult<UserResponse>>()
-        result.postValue(NetworkResult.Loading(true))
-
-        try {
-            val response = apiService.getUser(authorization, userId)
+class ProfileRepository(private val apiConfig: ApiConfig) {
+    suspend fun getUser(token: String, id: String): NetworkResult<UserResponse> {
+        return try {
+            val response = apiConfig.getUser(token, id)
             if (response.isSuccessful) {
-                result.postValue(NetworkResult.Success(response.body()!!))
+                NetworkResult.Success(response.body()!!)
             } else {
-                val errorBody = response.errorBody()?.string()
-                result.postValue(NetworkResult.Error(errorBody ?: "Unknown error"))
+                NetworkResult.Error("Error: ${response.code()}")
             }
         } catch (e: Exception) {
-            result.postValue(NetworkResult.Error(e.message ?: "Unknown error"))
-        } finally {
-            result.postValue(NetworkResult.Loading(false))
+            NetworkResult.Error("Exception: ${e.message}")
         }
-        return result
     }
 
     companion object {

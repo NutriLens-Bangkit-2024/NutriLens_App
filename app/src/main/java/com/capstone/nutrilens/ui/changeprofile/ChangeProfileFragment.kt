@@ -1,6 +1,7 @@
 package com.capstone.nutrilens.ui.changeprofile
 
 import android.app.AlertDialog
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,6 +16,8 @@ import com.capstone.nutrilens.data.response.EditUserRequest
 import com.capstone.nutrilens.data.util.NetworkResult
 import com.capstone.nutrilens.databinding.DialogSuccessPasswordBinding
 import com.capstone.nutrilens.databinding.FragmentChangeProfileBinding
+import at.favre.lib.crypto.bcrypt.BCrypt
+import com.capstone.nutrilens.data.util.Preferences
 
 class ChangeProfileFragment : Fragment() {
     private lateinit var changeProfileViewModel: ChangeProfileViewModel
@@ -36,15 +39,39 @@ class ChangeProfileFragment : Fragment() {
         val changeProfileFactory = ChangeProfileFactory.getInstance(changeProfileRepository)
         changeProfileViewModel = ViewModelProvider(this, changeProfileFactory).get(ChangeProfileViewModel::class.java)
 
+        val preferences = Preferences(requireContext())
+        val id = preferences.getUserId()
+        val token = preferences.getToken()
+        val oldPasswordHash = preferences.getOldPassword()
+
         binding.btnChangeProfile.setOnClickListener {
             val newName = binding.edtChangeUsername.text.toString()
             val newPassword = binding.edtChangePassword.text.toString()
-            val userEmail = "email"
-            val userProfileUrl = "profileurl"
-            val editUserRequest = EditUserRequest(userEmail, newPassword, newName, userProfileUrl)
-            val token = ""
-            val id = "id"
-            changeProfileViewModel.editUser("Bearer $token", id, editUserRequest)
+            val confirmNewPassword = binding.edtConfirmPassword.text.toString()
+            val enteredOldPassword = binding.edtOldPassword.text.toString()
+
+            // Validasi password lama
+            val isPasswordCorrect = oldPasswordHash?.let { hash ->
+                BCrypt.verifyer().verify(enteredOldPassword.toCharArray(), hash).verified
+            } ?: false
+
+            if (!isPasswordCorrect) {
+                Toast.makeText(requireContext(), "Old password is incorrect", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // Validasi password baru dan konfirmasi password baru
+            if (newPassword != confirmNewPassword) {
+                Toast.makeText(requireContext(), "New passwords do not match", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            if (id != null && token != null) {
+                val editUserRequest = EditUserRequest(newPassword, newName)
+                changeProfileViewModel.editUser("Bearer $token", id, editUserRequest)
+            } else {
+                Toast.makeText(requireContext(), "User ID or Token not found", Toast.LENGTH_SHORT).show()
+            }
         }
 
         binding.btnChangeProfileKembali.setOnClickListener {
@@ -70,11 +97,9 @@ class ChangeProfileFragment : Fragment() {
         val dialog = AlertDialog.Builder(requireContext())
             .setView(dialogBinding.root)
             .create()
-
         dialogBinding.btnPasswordMengerti.setOnClickListener {
             dialog.dismiss()
         }
-
         dialog.show()
     }
 

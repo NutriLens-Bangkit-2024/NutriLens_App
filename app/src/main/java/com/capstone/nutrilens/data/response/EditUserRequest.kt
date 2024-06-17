@@ -7,14 +7,14 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class EditUserRequest(
     @field:SerializedName("email")
-    val email: String,
+    val email: String? = null,
 
     @field:SerializedName("password")
-    val password: String,
+    val password: String? = null,
 
     @field:SerializedName("name")
-    val name: String,
+    val name: String? = null,
 
     @field:SerializedName("profileurl")
-    val profileUrl: String
+    val profileUrl: String? = null
 ) : Parcelable
