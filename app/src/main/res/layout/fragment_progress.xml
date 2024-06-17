@@ -27,7 +27,7 @@
                 android:layout_gravity="center"
                 android:textColor="@color/white"
                 android:fontFamily="@font/poppins_bold"
-                android:textSize="36sp"
+                android:textSize="25sp"
                 android:text="@string/progress_mingguan"
                 android:layout_marginTop="45dp"/>
         </androidx.cardview.widget.CardView>

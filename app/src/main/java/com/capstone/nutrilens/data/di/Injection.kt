@@ -28,8 +28,8 @@ object Injection {
         return ChangeProfileRepository.getInstance(apiconfig)
     }
 
-    fun provideScanningRepositoru(): ScanningRepository{
-        val apiconfig = ApiService.ScanningApiService()
+    fun provideScanningRepository(): ScanningRepository{
+        val apiconfig = ApiService.scanningRetrofit
         return ScanningRepository.getInstance(apiconfig)
     }
 }

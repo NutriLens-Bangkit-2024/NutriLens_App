@@ -24,7 +24,7 @@
     <string name="progress_mingguan">Progress Mingguan</string>
     <string name="date">date</string>
     <string name="asupan_kalori">Asupan Kalori</string>
-    <string name="nutri_score">Nutri Score</string>
+    <string name="nutri_score">Nutri-Score</string>
     <string name="detail_nutri_score">Makanan kemasan yang memiliki</string>
 
 
@@ -70,7 +70,7 @@
     <string name="keterangan">*Jika data diatas masih kurang tepat, anda dapat menubah nilainya terlebih dahulu!</string>
     <string name="detail_nutrisi_makanan">Detail Nutrisi Makanan</string>
     <string name="jenis_nutrisi">Kalsium</string>
-    <string name="gram">gram\n</string>
+    <string name="gram">gram</string>
     <string name="process_nutriscore">Process Nutriscore!</string>
     <string name="takaran_saji">Takaran Saji</string>
     <string name="energi">Energi</string>
