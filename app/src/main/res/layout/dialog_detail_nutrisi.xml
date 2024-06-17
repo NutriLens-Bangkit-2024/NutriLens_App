@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="300dp"
-    android:layout_height="560dp"
+    android:layout_width="350dp"
+    android:layout_height="700dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     app:cardCornerRadius="15dp"
@@ -28,7 +28,8 @@
         <TextView
             android:id="@+id/tv_Takaran_Saji"
             android:layout_width="wrap_content"
-            android:layout_height="20dp"
+            android:layout_height="50dp"
+            android:gravity="center"
             android:fontFamily="@font/poppins_bold"
             android:textSize="14sp"
             android:textColor="@color/black"
@@ -40,7 +41,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/beratTakaranSajiEditTextLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="70dp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
             android:layout_marginTop="4dp"
@@ -50,18 +51,19 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edt_beratTakaranSaji"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:ems="10"
                 android:maxLines="1"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 tools:ignore="SpeakableTextPresentCheck" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:id="@+id/tv_beratTakaranSaji"
             android:layout_width="wrap_content"
-            android:layout_height="20dp"
+            android:layout_height="50dp"
+            android:gravity="center"
             android:fontFamily="@font/poppins_bold"
             android:textSize="14sp"
             android:textColor="@color/black"
@@ -73,7 +75,8 @@
         <TextView
             android:id="@+id/tv_Energi"
             android:layout_width="wrap_content"
-            android:layout_height="20dp"
+            android:layout_height="50dp"
+            android:gravity="center"
             android:fontFamily="@font/poppins_bold"
             android:textSize="14sp"
             android:textColor="@color/black"
@@ -85,7 +88,8 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/beratEnergiEditTextLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="70dp"            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
             android:layout_marginTop="4dp"
             app:boxStrokeColor="@color/primary"
@@ -94,17 +98,18 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edt_beratEnergi"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:ems="10"
                 android:maxLines="1"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 tools:ignore="SpeakableTextPresentCheck" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:id="@+id/tv_beratEnergi"
             android:layout_width="wrap_content"
-            android:layout_height="20dp"
+            android:layout_height="50dp"
+            android:gravity="center"
             android:fontFamily="@font/poppins_bold"
             android:textSize="14sp"
             android:textColor="@color/black"
@@ -116,7 +121,8 @@
         <TextView
             android:id="@+id/tv_Protein"
             android:layout_width="wrap_content"
-            android:layout_height="20dp"
+            android:layout_height="50dp"
+            android:gravity="center"
             android:fontFamily="@font/poppins_bold"
             android:textSize="14sp"
             android:textColor="@color/black"
@@ -128,26 +134,28 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/beratProteinEditTextLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="70dp"            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
             android:layout_marginTop="4dp"
             app:boxStrokeColor="@color/primary"
             app:layout_constraintEnd_toStartOf="@id/tv_beratProtein"
             app:layout_constraintTop_toBottomOf="@id/beratEnergiEditTextLayout">
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edt_beratprotein"
+                android:id="@+id/edt_beratProtein"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:ems="10"
                 android:maxLines="1"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 tools:ignore="SpeakableTextPresentCheck" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:id="@+id/tv_beratProtein"
             android:layout_width="wrap_content"
-            android:layout_height="20dp"
+            android:layout_height="50dp"
+            android:gravity="center"
             android:fontFamily="@font/poppins_bold"
             android:textSize="14sp"
             android:textColor="@color/black"
@@ -159,7 +167,8 @@
         <TextView
             android:id="@+id/tv_Lemak"
             android:layout_width="wrap_content"
-            android:layout_height="20dp"
+            android:layout_height="50dp"
+            android:gravity="center"
             android:fontFamily="@font/poppins_bold"
             android:textSize="14sp"
             android:textColor="@color/black"
@@ -171,7 +180,8 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/beratLemakEditTextLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="70dp"            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
             android:layout_marginTop="4dp"
             app:boxStrokeColor="@color/primary"
@@ -180,17 +190,18 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edt_beratLemak"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:ems="10"
                 android:maxLines="1"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 tools:ignore="SpeakableTextPresentCheck" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:id="@+id/tv_beratLemak"
             android:layout_width="wrap_content"
-            android:layout_height="20dp"
+            android:layout_height="50dp"
+            android:gravity="center"
             android:fontFamily="@font/poppins_bold"
             android:textSize="14sp"
             android:textColor="@color/black"
@@ -202,7 +213,8 @@
         <TextView
             android:id="@+id/tv_Karbohidrat"
             android:layout_width="wrap_content"
-            android:layout_height="20dp"
+            android:layout_height="50dp"
+            android:gravity="center"
             android:fontFamily="@font/poppins_bold"
             android:textSize="14sp"
             android:textColor="@color/black"
@@ -214,7 +226,8 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/beratKarbohidratEditTextLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="70dp"            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
             android:layout_marginTop="4dp"
             app:boxStrokeColor="@color/primary"
@@ -223,17 +236,18 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edt_beratKarbohidrat"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:ems="10"
                 android:maxLines="1"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 tools:ignore="SpeakableTextPresentCheck" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:id="@+id/tv_beratKarbohidrat"
             android:layout_width="wrap_content"
-            android:layout_height="20dp"
+            android:layout_height="50dp"
+            android:gravity="center"
             android:fontFamily="@font/poppins_bold"
             android:textSize="14sp"
             android:textColor="@color/black"
@@ -245,7 +259,8 @@
         <TextView
             android:id="@+id/tv_Serat"
             android:layout_width="wrap_content"
-            android:layout_height="20dp"
+            android:layout_height="50dp"
+            android:gravity="center"
             android:fontFamily="@font/poppins_bold"
             android:textSize="14sp"
             android:textColor="@color/black"
@@ -257,7 +272,8 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/beratSeratEditTextLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="70dp"            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
             android:layout_marginTop="4dp"
             app:boxStrokeColor="@color/primary"
@@ -266,17 +282,18 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edt_beratSerat"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:ems="10"
                 android:maxLines="1"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 tools:ignore="SpeakableTextPresentCheck" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:id="@+id/tv_beratSerat"
             android:layout_width="wrap_content"
-            android:layout_height="20dp"
+            android:layout_height="50dp"
+            android:gravity="center"
             android:fontFamily="@font/poppins_bold"
             android:textSize="14sp"
             android:textColor="@color/black"
@@ -288,7 +305,8 @@
         <TextView
             android:id="@+id/tv_Natrium"
             android:layout_width="wrap_content"
-            android:layout_height="20dp"
+            android:layout_height="50dp"
+            android:gravity="center"
             android:fontFamily="@font/poppins_bold"
             android:textSize="14sp"
             android:textColor="@color/black"
@@ -300,7 +318,8 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/beratNatriumEditTextLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="70dp"            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+             android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
             android:layout_marginTop="4dp"
             app:boxStrokeColor="@color/primary"
@@ -309,17 +328,18 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edt_beratNatrium"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:ems="10"
                 android:maxLines="1"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 tools:ignore="SpeakableTextPresentCheck" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:id="@+id/tv_beratNatrium"
             android:layout_width="wrap_content"
-            android:layout_height="20dp"
+            android:layout_height="50dp"
+            android:gravity="center"
             android:fontFamily="@font/poppins_bold"
             android:textSize="14sp"
             android:textColor="@color/black"

@@ -68,15 +68,23 @@ class HomeFragment : Fragment() {
         //ambil data kalori harian
         caloriesViewModel.caloriesResult.observe(viewLifecycleOwner){result->
             when(result){
-                is NetworkResult.Loading->Toast.makeText(requireContext(),"Loadinggggggggggggggggggggg",Toast.LENGTH_LONG).show()
+                is NetworkResult.Loading-> binding.calorieProgressBar.progress = 0
                 is NetworkResult.Success->{
                     val caloriesHarian : List<Int> = result.data?.data?.dailyCalories?.values?.toList()
                         ?: emptyList()
-                    val latest : Int = ceil( caloriesHarian.last()*100/2500.0).toInt()
+                    val latestValue = caloriesHarian.first()
+                    val latest : Int =
+                        if (latestValue>0){
+                            ceil( latestValue*100/2500.0).toInt()
+                        }else{
+                            0
+                        }
                     binding.calorieProgressBar.progress = latest
 
                 }
-                is NetworkResult.Error-> Toast.makeText(requireContext(),"Error",Toast.LENGTH_LONG).show()
+                is NetworkResult.Error-> {
+                    Toast.makeText(requireContext(),"Gagal mendapatkan data progress harian",Toast.LENGTH_LONG).show()
+                }
             }
         }
 
