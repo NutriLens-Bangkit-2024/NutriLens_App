@@ -1,14 +1,6 @@
-package com.capstone.nutrilens.ui.camera
+package com.capstone.nutrilens.ui.camera.scanning
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.capstone.nutrilens.data.response.ScanningTestingResponse
-import com.capstone.nutrilens.data.util.NetworkResult
-import okhttp3.MultipartBody
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import java.io.File
 
 class ScanningViewModel (private val repository: ScanningRepository): ViewModel() {

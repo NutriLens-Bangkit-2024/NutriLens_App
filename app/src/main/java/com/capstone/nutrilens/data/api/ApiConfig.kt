@@ -5,11 +5,14 @@ import com.capstone.nutrilens.data.response.CaloriesResponse
 import com.capstone.nutrilens.data.response.EditUserRequest
 import com.capstone.nutrilens.data.response.LoginRequest
 import com.capstone.nutrilens.data.response.LoginResponse
+import com.capstone.nutrilens.data.response.ModelTestingResponse
 import com.capstone.nutrilens.data.response.NewsDetailApiResponse
+import com.capstone.nutrilens.data.response.PredictionResponse
 import com.capstone.nutrilens.data.response.RecipeResponse
 import com.capstone.nutrilens.data.response.RegisterResponse
 import com.capstone.nutrilens.data.response.ScanningTestingResponse
 import com.capstone.nutrilens.data.response.UserResponse
+import com.capstone.nutrilens.ui.camera.model.ModelRequest
 import okhttp3.MultipartBody
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -103,4 +106,17 @@ interface ApiConfig {
         @Header("Authorization") token:String,
         @Part file : MultipartBody.Part
     ): ScanningTestingResponse
+
+    @POST("predict")
+    suspend fun getModelResult(
+        @Body request : ModelRequest
+    ): ModelTestingResponse
+
+    @FormUrlEncoded
+    @POST("saveFood")
+    suspend fun savePrediction(
+        @Header("Authorization") token:String,
+        @Field("label") label: String,
+        @Field("calories") calories: Int,
+    ): PredictionResponse
 }
