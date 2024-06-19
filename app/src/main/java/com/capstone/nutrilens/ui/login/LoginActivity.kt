@@ -13,6 +13,7 @@ import com.capstone.nutrilens.MainActivity
 import com.capstone.nutrilens.R
 import com.capstone.nutrilens.data.response.LoginRequest
 import com.capstone.nutrilens.data.response.LoginResponse
+import com.capstone.nutrilens.data.session.UserModel
 import com.capstone.nutrilens.data.util.NetworkResult
 import com.capstone.nutrilens.data.util.Preferences
 import com.capstone.nutrilens.databinding.ActivityLoginBinding
@@ -23,6 +24,10 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var preferences: Preferences
     private val viewModel by viewModels<LoginViewModel>()
 
+    private val userSessionViewModel by viewModels<UserSessionViewModel> {
+        UserSessionViewModelFactory.getInstance(this)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -31,6 +36,14 @@ class LoginActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         preferences = Preferences(this)
+
+        userSessionViewModel.getSession().observe(this){user->
+            if (user.isLogin){
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+        }
 
         binding.loginButton.setOnClickListener {
             val email = binding.emailEditText.text.toString()
@@ -56,6 +69,7 @@ class LoginActivity : AppCompatActivity() {
                             preferences.saveToken(token)
                             login.id?.let { id ->
                                 preferences.saveUserId(id)
+                                userSessionViewModel.saveSession(UserModel(token,id))
                             }
                             val intent = Intent(this, MainActivity::class.java)
                             startActivity(intent)

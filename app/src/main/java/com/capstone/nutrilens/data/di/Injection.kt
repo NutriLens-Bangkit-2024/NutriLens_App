@@ -1,6 +1,10 @@
 package com.capstone.nutrilens.data.di
 
+import android.content.Context
 import com.capstone.nutrilens.data.api.ApiService
+import com.capstone.nutrilens.data.session.UserPreference
+import com.capstone.nutrilens.data.session.UserRepository
+import com.capstone.nutrilens.data.session.dataStore
 import com.capstone.nutrilens.ui.camera.model.ModelRepository
 import com.capstone.nutrilens.ui.camera.predict.PredictionRepository
 import com.capstone.nutrilens.ui.camera.scanning.ScanningRepository
@@ -49,5 +53,10 @@ object Injection {
     fun providePredictionRepository(): PredictionRepository {
         val apiconfig = ApiService.instanceRetrofit
         return PredictionRepository.getInstance(apiconfig)
+    }
+
+    fun provideRepository(context: Context): UserRepository {
+        val pref = UserPreference.getInstance(context.dataStore)
+        return UserRepository.getInstance(pref)
     }
 }
