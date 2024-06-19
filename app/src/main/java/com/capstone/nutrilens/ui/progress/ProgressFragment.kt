@@ -1,5 +1,6 @@
 package com.capstone.nutrilens.ui.progress
 
+import android.graphics.Color
 import android.icu.text.SimpleDateFormat
 import android.icu.util.Calendar
 import android.os.Bundle
@@ -112,13 +113,30 @@ class ProgressFragment : Fragment() {
             calendar.add(Calendar.DAY_OF_WEEK, 1)
         }
 
-        barDataSet = BarDataSet(barEntriesList, "Hari")
-        barData = BarData(barDataSet)
+        val barDataSet = BarDataSet(barEntriesList, "Hari")
+        val barData = BarData(barDataSet)
         barChart.data = barData
-        barDataSet.colors = ColorTemplate.MATERIAL_COLORS.toList()
+
+        // Set colors based on calorie ranges
+        val colors = barEntriesList.map { entry ->
+            val value = entry.y
+            when (value.toInt()) {
+                in 0..500 -> Color.parseColor("#98FB98") // Light Green
+                in 501..1000 -> Color.parseColor("#00FF00") // Green
+                in 1001..1500 -> Color.parseColor("#FFFF00") // Yellow
+                in 1501..2000 -> Color.parseColor("#FFA500") // Orange
+                in 2001..2500 -> Color.parseColor("#FF0000") // Red
+                else -> Color.GRAY // Default color for values outside the range
+            }
+        }
+        barDataSet.colors = colors
+
         barDataSet.valueTextSize = 20f
+
+        // Disable description
         barChart.description.isEnabled = false
 
+        // Configure x-axis
         val xAxis: XAxis = barChart.xAxis
         xAxis.valueFormatter = IndexAxisValueFormatter(labels)
         xAxis.position = XAxis.XAxisPosition.BOTTOM
@@ -126,16 +144,24 @@ class ProgressFragment : Fragment() {
         xAxis.granularity = 1f
         xAxis.labelCount = labels.size
 
+        // Configure left y-axis
         val yAxisLeft = barChart.axisLeft
         yAxisLeft.axisMinimum = 0f
-        yAxisLeft.axisMaximum = 5000f
+        yAxisLeft.axisMaximum = 2500f
+        yAxisLeft.granularity = 500f
+        yAxisLeft.labelCount = 6 // This ensures there are 6 labels (0, 500, 1000, 1500, 2000, 2500)
+        yAxisLeft.setDrawGridLines(true) // Enable grid lines
+        yAxisLeft.gridColor = Color.LTGRAY // Optional: Set grid line color
 
+        // Configure right y-axis
         val yAxisRight = barChart.axisRight
         yAxisRight.setDrawLabels(false)
 
+        // Enable legend
         val legend: Legend = barChart.legend
-        legend.isEnabled = true
-        
+        legend.isEnabled = false
+
+        // Refresh the chart
         barChart.invalidate()
     }
 
