@@ -14,6 +14,7 @@ import com.capstone.nutrilens.data.response.RegisterResponse
 import com.capstone.nutrilens.data.response.ScanningTestingResponse
 import com.capstone.nutrilens.data.response.UserResponse
 import com.capstone.nutrilens.ui.camera.model.ModelRequest
+import com.capstone.nutrilens.ui.camera.predict.PredictionRequest
 import okhttp3.MultipartBody
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -113,11 +114,9 @@ interface ApiConfig {
         @Body request : ModelRequest
     ): ModelTestingResponse
 
-    @FormUrlEncoded
     @POST("saveFood")
     suspend fun savePrediction(
         @Header("Authorization") token:String,
-        @Field("label") label: String,
-        @Field("calories") calories: Int,
+        @Body predictRequest : PredictionRequest
     ): PredictionResponse
 }

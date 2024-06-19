@@ -13,7 +13,8 @@ class PredictionRepository private constructor(
     fun savePredictionResult(token:String, label: String, calories: Int) = liveData {
         emit(Result.Loading)
         try {
-            val successResponse = apiConfig.savePrediction("Bearer $token",label,calories)
+            val request = PredictionRequest(label,calories)
+            val successResponse = apiConfig.savePrediction("Bearer $token",request)
             emit(Result.Success(successResponse.message))
         }catch (e:HttpException){
             val errorBody = e.response()?.errorBody()?.toString()
