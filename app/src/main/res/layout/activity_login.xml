@@ -67,23 +67,33 @@
         android:text="@string/password"
         android:fontFamily="@font/poppins_bold"
         android:textColor="@color/primary"
-        app:layout_constraintBottom_toTopOf="@+id/passwordEditText"
+        app:layout_constraintBottom_toTopOf="@+id/passwordEditTextLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailEditText" />
 
-    <com.capstone.nutrilens.ui.customview.PasswordEt
-        android:id="@+id/passwordEditText"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/passwordEditTextLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:hint="@string/text_password"
-        android:maxLines="1"
-        android:padding="12.5dp"
-        android:textSize="15sp"
+        app:hintEnabled="false"
+        app:endIconMode="password_toggle"
         app:layout_constraintBottom_toTopOf="@+id/loginButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/passwordTextView" >
+
+        <com.capstone.nutrilens.ui.customview.PasswordEt
+            android:id="@+id/passwordEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/text_password"
+            android:background="@drawable/bg_edit_text"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:padding="12.5dp"
+            android:textSize="15sp" />
+    </com.google.android.material.textfield.TextInputLayout>
 
 
     <com.google.android.material.button.MaterialButton
@@ -99,7 +109,7 @@
         app:layout_constraintBottom_toTopOf="@+id/layoutTextLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordEditText"/>
+        app:layout_constraintTop_toBottomOf="@+id/passwordEditTextLayout"/>
 
     <LinearLayout
         android:id="@+id/layoutTextLogin"

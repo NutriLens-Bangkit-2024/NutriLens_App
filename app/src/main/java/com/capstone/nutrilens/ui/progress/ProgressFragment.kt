@@ -135,7 +135,7 @@ class ProgressFragment : Fragment() {
 
         val legend: Legend = barChart.legend
         legend.isEnabled = true
-
+        
         barChart.invalidate()
     }
 

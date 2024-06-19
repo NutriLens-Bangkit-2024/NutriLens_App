@@ -6,6 +6,12 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class CaloriesResponse(
+    @field:SerializedName("status")
+    val status: String? = null,
+
+    @field:SerializedName("message")
+    val message: String? = null,
+
     @field:SerializedName("data")
     val data: CaloriesData? = null
 ) : Parcelable
@@ -14,9 +20,6 @@ data class CaloriesResponse(
 data class CaloriesData(
     @field:SerializedName("dailyCalories")
     val dailyCalories: Map<String, Int>? = null,
-
-    @field:SerializedName("weeklyCalories")
-    val weeklyCalories: Map<String, Int>? = null,
 
     @field:SerializedName("totalCalories")
     val totalCalories: Int? = null

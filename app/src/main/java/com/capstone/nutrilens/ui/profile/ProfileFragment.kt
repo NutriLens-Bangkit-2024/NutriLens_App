@@ -13,6 +13,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.capstone.nutrilens.R
 import com.capstone.nutrilens.data.api.ApiConfig
 import com.capstone.nutrilens.data.api.ApiService
@@ -89,8 +90,12 @@ class ProfileFragment : Fragment() {
                     val user = result.data?.data?.user
                     val username = user?.name
                     val email = user?.email
+                    val profileUrl = user?.profileurl
                     binding.profileUsernameText.text = username
                     binding.emailText.text = email
+                    Glide.with(this)
+                        .load(profileUrl)
+                        .into(binding.profileImage)
                 }
                 is NetworkResult.Error -> {
                     Toast.makeText(context, "Error: ${result.exception}", Toast.LENGTH_SHORT).show()

@@ -33,11 +33,18 @@ class LoginActivity : AppCompatActivity() {
         preferences = Preferences(this)
 
         binding.loginButton.setOnClickListener {
-            val loginRequest = LoginRequest(
-                email = binding.emailEditText.text.toString(),
-                password = binding.passwordEditText.text.toString()
-            )
-            viewModel.login(loginRequest)
+            val email = binding.emailEditText.text.toString()
+            val password = binding.passwordEditText.text.toString()
+
+            if (email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "Please enter email and password", Toast.LENGTH_SHORT).show()
+            } else {
+                val loginRequest = LoginRequest(
+                    email = email,
+                    password = password
+                )
+                viewModel.login(loginRequest)
+            }
         }
 
         viewModel.loginResponse.observe(this) { response ->

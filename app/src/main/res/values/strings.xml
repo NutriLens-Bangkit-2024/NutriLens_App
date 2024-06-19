@@ -25,7 +25,7 @@
     <string name="date">date</string>
     <string name="asupan_kalori">Asupan Kalori</string>
     <string name="nutri_score">Nutri-Score</string>
-    <string name="detail_nutri_score">Makanan kemasan yang memiliki</string>
+    <string name="detail_nutri_score">Makanan kemasan yang memiliki\n1000 kalori</string>
 
 
     <string name="dialog_ingin_makan">Apakah anda ingin mengonsumsi makanan ini ?</string>
@@ -44,13 +44,15 @@
     <string name="deskripsi_tahapan">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
 
     <string name="profile">Profile</string>
-    <string name="name">Username</string>
+    <string name="name">Nama</string>
+    <string name="name_home">alivya</string>
     <string name="email">Email</string>
     <string name="dark_mode">Dark Mode</string>
     <string name="light_mode">Light Mode</string>
     <string name="dialog_ingin_keluar">Yakin ingin keluar?</string>
     <string name="sukses">Sukses!</string>
     <string name="password_diubah">Password berhasil diubah</string>
+    <string name="ubah_username">Ubah Username</string>
     <string name="change_profile">Ubah Profile</string>
     <string name="berita">Berita</string>
     <string name="logout">Logout</string>

@@ -30,13 +30,14 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         binding.registerButtonRegister.setOnClickListener {
-            if(binding.registerEmailField.text!=null && binding.registerNameField.text!=null && binding.registerPasswordField.text!=null){
-                val name = binding.registerNameField.text.toString()
-                val email = binding.registerEmailField.text.toString()
-                val password = binding.registerPasswordField.text.toString()
-                startRegistration(name,email,password)
-            }else{
-                Toast.makeText(this@RegisterActivity,"Pastikan data sudah lengkap sebelum menekan register!",Toast.LENGTH_LONG).show()
+            val name = binding.registerNameField.text.toString()
+            val email = binding.registerEmailField.text.toString()
+            val password = binding.registerPasswordField.text.toString()
+
+            if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this@RegisterActivity, "Pastikan data sudah lengkap sebelum menekan register!", Toast.LENGTH_LONG).show()
+            } else {
+                startRegistration(name, email, password)
             }
         }
     }

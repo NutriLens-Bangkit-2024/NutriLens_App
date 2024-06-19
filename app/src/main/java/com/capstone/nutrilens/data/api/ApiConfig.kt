@@ -3,6 +3,7 @@ package com.capstone.nutrilens.data.api
 import com.capstone.nutrilens.data.response.NewsListApiResponse
 import com.capstone.nutrilens.data.response.CaloriesResponse
 import com.capstone.nutrilens.data.response.EditUserRequest
+import com.capstone.nutrilens.data.response.EditUserResponse
 import com.capstone.nutrilens.data.response.LoginRequest
 import com.capstone.nutrilens.data.response.LoginResponse
 import com.capstone.nutrilens.data.response.NewsDetailApiResponse
@@ -20,13 +21,13 @@ import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Multipart
+import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Part
 import retrofit2.http.Path
 
 interface ApiConfig {
-
     @FormUrlEncoded
     @POST("user")
     fun register(
@@ -47,12 +48,12 @@ interface ApiConfig {
         @Path("id") id: String
     ): Response<UserResponse>
 
-    @PUT("user/{id}")
+    @PATCH("user/{id}")
     suspend fun editUser(
         @Header("Authorization") authorization: String,
         @Path("id") id: String,
         @Body editUserRequest: EditUserRequest
-    ): Response<UserResponse>
+    ): Response<EditUserResponse>
 
     @POST("logout")
     fun logout(

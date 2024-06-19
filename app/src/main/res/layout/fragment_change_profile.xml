@@ -31,7 +31,7 @@
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="0dp"
-        android:layout_height="480dp"
+        android:layout_height="490dp"
         android:layout_margin="16dp"
         app:cardCornerRadius="25dp"
         android:backgroundTint="@color/white"
@@ -50,7 +50,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/change_profile"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:fontFamily="@font/poppins_bold"
                 android:textColor="@color/black"
                 android:layout_marginTop="12dp"
@@ -71,21 +71,49 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/changeProfileText">
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edt_changeUsername"
+                    android:id="@+id/edtChangeUsername"
                     android:background="@drawable/bg_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:maxLines="1"
-                    android:hint="Ubah Username"
+                    android:hint="@string/ubah_username"
                     tools:ignore="SpeakableTextPresentCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
+<!--            <com.google.android.material.textfield.TextInputLayout-->
+<!--                android:id="@+id/oldPasswordEditTextLayout"-->
+<!--                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:hintEnabled="false"-->
+<!--                app:endIconMode="password_toggle"-->
+<!--                android:layout_marginStart="32dp"-->
+<!--                android:layout_marginEnd="32dp"-->
+<!--                android:layout_marginTop="8dp"-->
+<!--                app:boxStrokeColor="@color/primary"-->
+<!--                app:boxStrokeWidth="2dp"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/changeUsernameEditTextLayout">-->
+<!--                <com.google.android.material.textfield.TextInputEditText-->
+<!--                    android:id="@+id/edt_oldPassword"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:background="@drawable/bg_edit_text"-->
+<!--                    android:ems="10"-->
+<!--                    android:inputType="textPassword"-->
+<!--                    android:hint="Password Lama"-->
+<!--                    tools:ignore="SpeakableTextPresentCheck" />-->
+<!--            </com.google.android.material.textfield.TextInputLayout>-->
+
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/oldPasswordEditTextLayout"
+                android:id="@+id/changePasswordEditTextLayout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                app:hintEnabled="false"
+                app:endIconMode="password_toggle"
                 android:layout_marginStart="32dp"
                 android:layout_marginEnd="32dp"
                 android:layout_marginTop="8dp"
@@ -94,30 +122,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/changeUsernameEditTextLayout">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edt_oldPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_edit_text"
-                    android:ems="10"
-                    android:inputType="textPassword"
-                    android:hint="Password Lama"
-                    tools:ignore="SpeakableTextPresentCheck" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/changePasswordEditTextLayout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginEnd="32dp"
-                android:layout_marginTop="8dp"
-                app:boxStrokeColor="@color/primary"
-                app:boxStrokeWidth="2dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/oldPasswordEditTextLayout">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edt_changePassword"
                     android:layout_width="match_parent"
@@ -134,6 +138,8 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                app:hintEnabled="false"
+                app:endIconMode="password_toggle"
                 android:layout_marginStart="32dp"
                 android:layout_marginEnd="32dp"
                 android:layout_marginTop="8dp"
@@ -149,7 +155,7 @@
                     android:background="@drawable/bg_edit_text"
                     android:ems="10"
                     android:inputType="textPassword"
-                    android:hint="Ketik Ulang Password Baru"
+                    android:hint="Ketik Ulang Password"
                     tools:ignore="SpeakableTextPresentCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 

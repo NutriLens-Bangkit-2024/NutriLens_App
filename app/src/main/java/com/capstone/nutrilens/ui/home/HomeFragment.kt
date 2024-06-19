@@ -6,13 +6,16 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.core.app.ActivityOptionsCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.capstone.nutrilens.R
 import com.capstone.nutrilens.data.api.ApiService
 import com.capstone.nutrilens.data.response.RecipesItem
 import com.capstone.nutrilens.data.util.NetworkResult
@@ -50,13 +53,23 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
-        preferences = Preferences(requireContext()) // Inisialisasi preferences di sini
+        preferences = Preferences(requireContext())
         return binding.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+//        fun updateProgressBarColor(progressBar: ProgressBar, calorieValue: Int) {
+//            val maxCalories = 2500
+//            val midCalories = 1500
+//            val drawable = when {
+//                calorieValue <= midCalories -> R.drawable.progress_bar_low
+//                calorieValue <= maxCalories -> R.drawable.progress_bar_mid
+//                else -> R.drawable.progress_bar_high
+//            }
+//            progressBar.progressDrawable = context?.let { ContextCompat.getDrawable(it, drawable) }
+//        }
 
         // Inisialisasi ViewModel
         val repository = NewsRepository(ApiService.instanceRetrofit)
@@ -65,14 +78,12 @@ class HomeFragment : Fragment() {
         caloriesViewModel = ViewModelProvider(this,ProgressViewModelFactory(CaloriesRepository(ApiService.instanceRetrofit)))[ProgressViewModel::class.java]
         caloriesViewModel.fetchCaloriesData("Bearer ${preferences.getToken().toString()}")
 
-        //ambil data kalori harian
         caloriesViewModel.caloriesResult.observe(viewLifecycleOwner){result->
             when(result){
                 is NetworkResult.Loading-> binding.calorieProgressBar.progress = 0
                 is NetworkResult.Success->{
-                    val caloriesHarian : List<Int> = result.data?.data?.dailyCalories?.values?.toList()
-                        ?: emptyList()
-                    val latestValue = caloriesHarian.first()
+                    val caloriesHarian: List<Int> = result.data?.data?.dailyCalories?.values?.toList() ?: emptyList()
+                    val latestValue = caloriesHarian.firstOrNull() ?: 0
                     val latest : Int =
                         if (latestValue>0){
                             ceil( latestValue*100/2500.0).toInt()
@@ -80,7 +91,7 @@ class HomeFragment : Fragment() {
                             0
                         }
                     binding.calorieProgressBar.progress = latest
-
+//                    updateProgressBarColor(binding.calorieProgressBar, latestValue)
                 }
                 is NetworkResult.Error-> {
                     Toast.makeText(requireContext(),"Gagal mendapatkan data progress harian",Toast.LENGTH_LONG).show()
@@ -88,7 +99,6 @@ class HomeFragment : Fragment() {
             }
         }
 
-        // Inisialisasi RecyclerView untuk berita
         newsAdapter = NewsAdapter()
         binding.rvNewsHome.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
@@ -102,8 +112,6 @@ class HomeFragment : Fragment() {
             } ?: Log.d("HomeFragment", "News data is null")
         })
 
-        // Ambil data resep
-//        val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJ1cm46YXVkaWVuY2U6dGVzdCIsImlzcyI6InVybjppc3N1ZXI6dGVzdCIsInN1YiI6IlVZWnA3ZS1ZRHZFd0pXMHAiLCJpYXQiOjE3MTgzNzg1NzR9.5kUX07vwT7xNQLTAIDimRAb6UGIDXiyczHjbg5Gz4bQ"
         recipeViewModel.getRecipes(preferences.getToken().toString()).observe(viewLifecycleOwner) {
             recipeViewModel.recipeData().observe(viewLifecycleOwner) { recipe ->
                 if (recipe != null) {

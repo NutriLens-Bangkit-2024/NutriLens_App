@@ -3,6 +3,7 @@ package com.capstone.nutrilens.data.util
 import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
+import at.favre.lib.crypto.bcrypt.BCrypt
 
 class Preferences(context: Context) {
     private val sharedPreferences: SharedPreferences = context.getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE)
@@ -50,28 +51,7 @@ class Preferences(context: Context) {
         }
     }
 
-    fun saveOldPassword(passwordHash: String) {
-        try {
-            editor.putString("PASSWORD", passwordHash)
-            editor.apply()
-            Log.d("Preferences", "Password hash saved successfully")
-        } catch (e: Exception) {
-            Log.e("Preferences", "Error saving password hash: ${e.message}")
-        }
-    }
-
-    fun getOldPassword(): String? {
-        return try {
-            val passwordHash = sharedPreferences.getString("PASSWORD", null)
-            Log.d("Preferences", "Password hash retrieved successfully: $passwordHash")
-            passwordHash
-        } catch (e: Exception) {
-            Log.e("Preferences", "Error retrieving password hash: ${e.message}")
-            null
-        }
-    }
-
-    fun clearSession(){
+    fun clearSession() {
         editor.clear()
         editor.apply()
     }

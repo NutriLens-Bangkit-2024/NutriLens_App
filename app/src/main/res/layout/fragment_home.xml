@@ -30,10 +30,10 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
                     android:fontFamily="@font/poppins_regular"
-                    android:textSize="14sp"
-                    android:text="@string/welcome_back"
+                    android:textSize="15sp"
+                    android:text="Selamat datang"
                     android:layout_marginStart="32dp"
-                    android:layout_marginBottom="-12dp"
+                    android:layout_marginBottom="-7dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintBottom_toTopOf="@id/tv_username_home"/>
                 
@@ -43,17 +43,16 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
                     android:fontFamily="@font/poppins_bold"
-                    android:textSize="30sp"
-                    android:text="@string/name"
+                    android:textSize="32sp"
+                    android:text="@string/name_home"
                     android:layout_marginStart="32dp"
-
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"/>
                 
                 <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:src="@drawable/fruit"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:src="@drawable/logo_white"
                     android:layout_marginEnd="32dp"
                     android:layout_marginBottom="12dp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -64,7 +63,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/card_kalori_home"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="125dp"
             android:layout_margin="16dp"
             app:cardCornerRadius="25dp"
             android:backgroundTint="@color/primary"
@@ -90,7 +89,7 @@
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:progressDrawable="@drawable/progress_bar"
+                    android:progressDrawable="@drawable/progress_bar_low"
                     android:max="100"
                     app:layout_constraintTop_toBottomOf="@id/calorieText"
                     app:layout_constraintStart_toStartOf="parent"
@@ -98,15 +97,26 @@
                     android:layout_marginTop="16dp" />
 
                 <TextView
-                    android:id="@+id/limitText"
+                    android:id="@+id/minText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/batas_maksimal"
+                    android:text="0 kalori"
                     android:textSize="12sp"
                     android:textColor="@color/white"
                     app:layout_constraintTop_toBottomOf="@id/calorieProgressBar"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginTop="25dp" />
+                    android:layout_marginTop="15dp" />
+
+                <TextView
+                    android:id="@+id/limitText"
+                    android:layout_width="70dp"
+                    android:layout_height="20dp"
+                    android:text="2500 kalori"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    app:layout_constraintTop_toBottomOf="@id/calorieProgressBar"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginTop="15dp" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>

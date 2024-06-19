@@ -37,28 +37,16 @@ class ChangeProfileFragment : Fragment() {
 
         val changeProfileRepository = provideChangeProfileRepository()
         val changeProfileFactory = ChangeProfileFactory.getInstance(changeProfileRepository)
-        changeProfileViewModel = ViewModelProvider(this, changeProfileFactory).get(ChangeProfileViewModel::class.java)
+        changeProfileViewModel = ViewModelProvider(this, changeProfileFactory)[ChangeProfileViewModel::class.java]
 
-        val preferences = Preferences(requireContext())
-        val id = preferences.getUserId()
-        val token = preferences.getToken()
-        val oldPasswordHash = preferences.getOldPassword()
+        val sharedPreferences = requireContext().getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE)
+        val id = sharedPreferences.getString("id", null)
+        val token = sharedPreferences.getString("TOKEN", null)
 
         binding.btnChangeProfile.setOnClickListener {
             val newName = binding.edtChangeUsername.text.toString()
             val newPassword = binding.edtChangePassword.text.toString()
             val confirmNewPassword = binding.edtConfirmPassword.text.toString()
-            val enteredOldPassword = binding.edtOldPassword.text.toString()
-
-            // Validasi password lama
-            val isPasswordCorrect = oldPasswordHash?.let { hash ->
-                BCrypt.verifyer().verify(enteredOldPassword.toCharArray(), hash).verified
-            } ?: false
-
-            if (!isPasswordCorrect) {
-                Toast.makeText(requireContext(), "Old password is incorrect", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
 
             // Validasi password baru dan konfirmasi password baru
             if (newPassword != confirmNewPassword) {
@@ -78,7 +66,7 @@ class ChangeProfileFragment : Fragment() {
             findNavController().popBackStack()
         }
 
-        changeProfileViewModel.saveChangesResult.observe(viewLifecycleOwner) { result ->
+        changeProfileViewModel.editUserResult.observe(viewLifecycleOwner) { result ->
             when (result) {
                 is NetworkResult.Success -> {
                     showSuccessDialog()

@@ -42,5 +42,3 @@ data class User(
     @field:SerializedName("updatedAt")
     val updatedAt: String? = null
 ) : Parcelable
-
-
