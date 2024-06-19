@@ -1,4 +1,4 @@
-package com.capstone.nutrilens.ui.camera
+package com.capstone.nutrilens.ui.camera.scanning
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
@@ -17,8 +17,8 @@ class ScanningViewModelFactory (private val scanningRepository : ScanningReposit
     companion object{
         private var instance : ScanningViewModelFactory? = null
         fun getInstance(context: Context) : ScanningViewModelFactory =
-            instance?: synchronized(this){
-                instance?: ScanningViewModelFactory(Injection.provideScanningRepository())
+            instance ?: synchronized(this){
+                instance ?: ScanningViewModelFactory(Injection.provideScanningRepository())
             }.also { instance = it }
     }
 }

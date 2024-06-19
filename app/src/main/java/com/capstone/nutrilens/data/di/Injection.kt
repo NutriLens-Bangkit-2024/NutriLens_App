@@ -1,7 +1,9 @@
 package com.capstone.nutrilens.data.di
 
 import com.capstone.nutrilens.data.api.ApiService
-import com.capstone.nutrilens.ui.camera.ScanningRepository
+import com.capstone.nutrilens.ui.camera.model.ModelRepository
+import com.capstone.nutrilens.ui.camera.predict.PredictionRepository
+import com.capstone.nutrilens.ui.camera.scanning.ScanningRepository
 import com.capstone.nutrilens.ui.changeprofile.ChangeProfileRepository
 import com.capstone.nutrilens.ui.login.LoginRepository
 import com.capstone.nutrilens.ui.profile.ProfileRepository
@@ -34,8 +36,18 @@ object Injection {
         return ChangeProfileRepository.getInstance(apiconfig)
     }
 
-    fun provideScanningRepository(): ScanningRepository{
+    fun provideScanningRepository(): ScanningRepository {
         val apiconfig = ApiService.scanningRetrofit
         return ScanningRepository.getInstance(apiconfig)
+    }
+
+    fun provideModelRepository():ModelRepository{
+        val apiconfig = ApiService.modelRetrofit
+        return ModelRepository.getInstance(apiconfig)
+    }
+
+    fun providePredictionRepository(): PredictionRepository {
+        val apiconfig = ApiService.instanceRetrofit
+        return PredictionRepository.getInstance(apiconfig)
     }
 }

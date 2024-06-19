@@ -1,10 +1,9 @@
-package com.capstone.nutrilens.ui.camera
+package com.capstone.nutrilens.ui.camera.scanning
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
 import com.capstone.nutrilens.data.api.ApiConfig
-import com.capstone.nutrilens.data.response.RegisterResponse
 import com.capstone.nutrilens.data.response.ScanningTestingResponse
 import com.google.gson.Gson
 import okhttp3.MediaType.Companion.toMediaType
@@ -40,9 +39,9 @@ class ScanningRepository private constructor(
     companion object{
         @Volatile
         private var instance: ScanningRepository? = null
-        fun getInstance(apiConfig: ApiConfig):ScanningRepository=
-            instance?: synchronized(this){
-                instance?:ScanningRepository(apiConfig)
+        fun getInstance(apiConfig: ApiConfig): ScanningRepository =
+            instance ?: synchronized(this){
+                instance ?: ScanningRepository(apiConfig)
             }.also { instance = it }
     }
 }

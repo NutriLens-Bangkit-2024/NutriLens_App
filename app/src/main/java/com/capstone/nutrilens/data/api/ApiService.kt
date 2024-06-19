@@ -52,9 +52,9 @@ object ApiService {
 
             val client: OkHttpClient = OkHttpClient.Builder()
                 .addInterceptor(interceptor)
-//                .connectTimeout(40, TimeUnit.SECONDS)
-//                .readTimeout(40, TimeUnit.SECONDS)
-//                .writeTimeout(40, TimeUnit.SECONDS)
+                .connectTimeout(120, TimeUnit.SECONDS)
+                .readTimeout(120, TimeUnit.SECONDS)
+                .writeTimeout(120, TimeUnit.SECONDS)
                 .build()
 
             return Retrofit.Builder()
@@ -63,4 +63,31 @@ object ApiService {
                 .client(client)
                 .build()
         }
+
+    private val modelClient: Retrofit
+        get() {
+            val gson = GsonBuilder()
+                .setLenient()
+                .create()
+
+            val interceptor = HttpLoggingInterceptor()
+            interceptor.level = HttpLoggingInterceptor.Level.BODY
+
+            val client: OkHttpClient = OkHttpClient.Builder()
+                .addInterceptor(interceptor)
+                .connectTimeout(120, TimeUnit.SECONDS)
+                .readTimeout(120, TimeUnit.SECONDS)
+                .writeTimeout(120, TimeUnit.SECONDS)
+                .build()
+
+            return Retrofit.Builder()
+                .baseUrl("https://nutrition-grade-model-n62gwjf46q-et.a.run.app/")
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .client(client)
+                .build()
+        }
+
+    val modelRetrofit: ApiConfig
+        get() = modelClient.create(ApiConfig::class.java)
+
 }
