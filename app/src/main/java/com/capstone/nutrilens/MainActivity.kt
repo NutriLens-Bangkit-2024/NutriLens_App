@@ -10,9 +10,11 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -21,12 +23,19 @@ import com.capstone.nutrilens.data.util.Preferences
 import com.capstone.nutrilens.data.util.getImageUri
 import com.capstone.nutrilens.databinding.ActivityMainBinding
 import com.capstone.nutrilens.ui.login.LoginActivity
+import com.capstone.nutrilens.ui.login.UserSessionViewModel
+import com.capstone.nutrilens.ui.login.UserSessionViewModelFactory
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private var currentImageUri: Uri? = null
     private lateinit var preferences: Preferences
+
+
+    private val userSessionViewModel by viewModels<UserSessionViewModel> {
+        UserSessionViewModelFactory.getInstance(this)
+    }
 
     private fun allPermissionGranted()=
         ContextCompat.checkSelfPermission(
@@ -97,6 +106,13 @@ class MainActivity : AppCompatActivity() {
             }
             findNavController(R.id.nav_host_fragment_activity_main).navigate(R.id.navigation_scanner,bundle)
         }
+    }
+
+    fun logout() {
+        userSessionViewModel.logout()
+        preferences.clearSession()
+        startActivity(Intent(this, LoginActivity::class.java))
+        finishAffinity()
     }
 
     companion object{

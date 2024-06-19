@@ -14,6 +14,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.capstone.nutrilens.MainActivity
 import com.capstone.nutrilens.R
 import com.capstone.nutrilens.data.api.ApiConfig
 import com.capstone.nutrilens.data.api.ApiService
@@ -133,7 +134,8 @@ class ProfileFragment : Fragment() {
         }
 
         dialogBinding.btnKeluarYakin.setOnClickListener {
-            logoutUser(dialog)
+            (activity as? MainActivity)?.logout()
+//            logoutUser(dialog)
         }
 
         dialog.show()

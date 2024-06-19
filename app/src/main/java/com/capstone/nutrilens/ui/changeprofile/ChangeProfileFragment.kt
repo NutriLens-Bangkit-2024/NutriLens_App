@@ -17,7 +17,6 @@ import com.capstone.nutrilens.data.response.EditUserRequest
 import com.capstone.nutrilens.data.util.NetworkResult
 import com.capstone.nutrilens.databinding.DialogSuccessPasswordBinding
 import com.capstone.nutrilens.databinding.FragmentChangeProfileBinding
-import at.favre.lib.crypto.bcrypt.BCrypt
 import com.capstone.nutrilens.data.util.Preferences
 import com.capstone.nutrilens.ui.profile.ProfileFragment
 
