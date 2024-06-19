@@ -112,6 +112,16 @@ class ProfileFragment : Fragment() {
         }
     }
 
+    fun updateUserProfile() {
+        val token = preferences.getToken()
+        val id = preferences.getUserId()
+
+        if (token != null && id != null) {
+            profileViewModel.fetchUser("Bearer $token", id)
+        }
+    }
+
+
     private fun showLogoutConfirmationDialog() {
         val dialogBinding = DialogKeluarBinding.inflate(layoutInflater)
         val dialog = AlertDialog.Builder(requireContext())

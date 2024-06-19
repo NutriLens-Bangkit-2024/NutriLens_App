@@ -3,6 +3,7 @@ package com.capstone.nutrilens.ui.changeprofile
 import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +19,7 @@ import com.capstone.nutrilens.databinding.DialogSuccessPasswordBinding
 import com.capstone.nutrilens.databinding.FragmentChangeProfileBinding
 import at.favre.lib.crypto.bcrypt.BCrypt
 import com.capstone.nutrilens.data.util.Preferences
+import com.capstone.nutrilens.ui.profile.ProfileFragment
 
 class ChangeProfileFragment : Fragment() {
     private lateinit var changeProfileViewModel: ChangeProfileViewModel
@@ -48,14 +50,19 @@ class ChangeProfileFragment : Fragment() {
             val newPassword = binding.edtChangePassword.text.toString()
             val confirmNewPassword = binding.edtConfirmPassword.text.toString()
 
-            // Validasi password baru dan konfirmasi password baru
             if (newPassword != confirmNewPassword) {
                 Toast.makeText(requireContext(), "New passwords do not match", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
             if (id != null && token != null) {
-                val editUserRequest = EditUserRequest(newPassword, newName)
+                val editUserRequest = EditUserRequest(
+                    email = null,
+                    password = newPassword,
+                    name = newName,
+                    profileUrl = null
+                )
+                Log.d("ChangeProfileFragment", "Sending EditUserRequest: $editUserRequest")
                 changeProfileViewModel.editUser("Bearer $token", id, editUserRequest)
             } else {
                 Toast.makeText(requireContext(), "User ID or Token not found", Toast.LENGTH_SHORT).show()
@@ -70,6 +77,7 @@ class ChangeProfileFragment : Fragment() {
             when (result) {
                 is NetworkResult.Success -> {
                     showSuccessDialog()
+                    updateUserProfile()
                     findNavController().popBackStack()
                 }
                 is NetworkResult.Error -> {
@@ -77,6 +85,13 @@ class ChangeProfileFragment : Fragment() {
                 }
                 else -> {}
             }
+        }
+    }
+
+    private fun updateUserProfile() {
+        val profileFragment = parentFragmentManager.findFragmentByTag("ProfileFragment")
+        if (profileFragment is ProfileFragment) {
+            profileFragment.updateUserProfile()
         }
     }
 
