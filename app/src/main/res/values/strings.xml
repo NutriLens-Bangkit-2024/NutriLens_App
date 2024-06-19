@@ -51,11 +51,11 @@
     <string name="light_mode">Light Mode</string>
     <string name="dialog_ingin_keluar">Yakin ingin keluar?</string>
     <string name="sukses">Sukses!</string>
-    <string name="password_diubah">Password berhasil diubah</string>
+    <string name="profile_change">Profile berhasil diubah</string>
     <string name="ubah_username">Ubah Nama</string>
     <string name="change_profile">Ubah Profile</string>
     <string name="berita">Berita</string>
-    <string name="logout">Logout</string>
+    <string name="logout">Keluar</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="text_login_welcome">Selamat datang kembali!</string>
