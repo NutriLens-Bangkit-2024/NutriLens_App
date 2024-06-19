@@ -30,6 +30,7 @@ import com.capstone.nutrilens.databinding.FragmentCameraBinding
 import com.capstone.nutrilens.ui.camera.model.ModelRequest
 import com.capstone.nutrilens.ui.camera.model.ModelViewModel
 import com.capstone.nutrilens.ui.camera.model.ModelViewModelFactory
+import com.capstone.nutrilens.ui.camera.predict.PredictionRequest
 import com.capstone.nutrilens.ui.camera.predict.PredictionViewModel
 import com.capstone.nutrilens.ui.camera.predict.PredictionViewModelFactory
 import com.capstone.nutrilens.ui.camera.scanning.ScanningViewModel
@@ -268,6 +269,7 @@ class CameraFragment : Fragment() {
             }
             val btnYakin : Button = dialog.findViewById(R.id.btn_ingin_makan_yakin)
             btnYakin.setOnClickListener{
+                val request = PredictionRequest(score, calPer100g)
                 predictionViewModel.savePredictionResult(preferences.getToken().toString(), score, calPer100g.toInt() ).observe(viewLifecycleOwner){result->
                     when(result){
                         is Result.Loading-> progressBar.visibility = View.VISIBLE
