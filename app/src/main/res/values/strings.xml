@@ -56,6 +56,14 @@
     <string name="change_profile">Ubah Profile</string>
     <string name="berita">Berita</string>
     <string name="logout">Keluar</string>
+    <string name="header1_progress">Nutri-Score dihitung dari data pada tabel pernyataan nutrisi yang terdapat pada bagian belakang kemasan dan data komposisi.</string>
+    <string name="header2_progress">Nutri-score mengklasifikasikan produk makanan ke dalam lima kategori:</string>
+    <string name="kategoriA_progress">Menunjukkan makanan memiliki \nkualitas gizi yang lebih tinggi.</string>
+    <string name="kategoriB_progress">Menunjukkan makanan memiliki \nkualitas gizi yang baik.</string>
+    <string name="kategoriC_progress">Menunjukkan makanan memiliki \nkualitas gizi yang sedang.</string>
+    <string name="kategoriE_progress">Menunjukkan makanan memiliki \nkualitas gizi yang rendah.</string>
+    <string name="kategoriD_progress">Menunjukkan makanan memiliki \nkualitas gizi yang lebih rendah.</string>
+    <string name="footer_progress">Skor untuk makanan atau minuman tertentu dihitung dengan mengalokasikan poin untuk kandungan per 100 g (atau per 100 mL untuk minuman) dari energi, asam lemak jenuh, karbohidrat, gula, natrium, serat, dan protein.</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="text_login_welcome">Selamat datang kembali!</string>

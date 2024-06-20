@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.camera.CameraFragment"
+    android:background="@color/white"
     android:paddingBottom="110dp">
 
     <androidx.cardview.widget.CardView

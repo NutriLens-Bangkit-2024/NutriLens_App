@@ -15,13 +15,20 @@ import kotlinx.coroutines.withContext
 
 class ChangeProfileViewModel(private val repository: ChangeProfileRepository) : ViewModel() {
 
-    private val _editUserResult = MutableLiveData<NetworkResult<EditUserResponse?>>()
-    val editUserResult: LiveData<NetworkResult<EditUserResponse?>> get() = _editUserResult
+    private val _editUserResult = MutableLiveData<NetworkResult<EditUserResponse>>()
+    val editUserResult: LiveData<NetworkResult<EditUserResponse>> get() = _editUserResult
 
     fun editUser(authorization: String, id: String, editUserRequest: EditUserRequest) {
         viewModelScope.launch {
-            repository.editUser(authorization, id, editUserRequest).observeForever { result ->
-                _editUserResult.value = result
+            try {
+                val response = repository.editUser(authorization, id, editUserRequest)
+                if (response.isSuccessful && response.body() != null) {
+                    _editUserResult.value = NetworkResult.Success(response.body()!!)
+                } else {
+                    _editUserResult.value = NetworkResult.Error("Failed to update user")
+                }
+            } catch (e: Exception) {
+                _editUserResult.value = NetworkResult.Error(e.message ?: "An error occurred")
             }
         }
     }

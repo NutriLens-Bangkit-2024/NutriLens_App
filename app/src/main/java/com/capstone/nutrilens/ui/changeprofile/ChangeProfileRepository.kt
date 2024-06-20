@@ -1,5 +1,6 @@
 package com.capstone.nutrilens.ui.changeprofile
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.capstone.nutrilens.data.api.ApiConfig
@@ -9,25 +10,13 @@ import com.capstone.nutrilens.data.response.UserResponse
 import com.capstone.nutrilens.data.util.NetworkResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import retrofit2.Response
 
 class ChangeProfileRepository private constructor(
     private val apiService: ApiConfig
 ){
-    suspend fun editUser(authorization: String, id: String, editUserRequest: EditUserRequest): MutableLiveData<NetworkResult<EditUserResponse?>> {
-        val data = MutableLiveData<NetworkResult<EditUserResponse?>>()
-        withContext(Dispatchers.IO) {
-            try {
-                val response = apiService.editUser(authorization, id, editUserRequest)
-                if (response.isSuccessful) {
-                    data.postValue(NetworkResult.Success(response.body()))
-                } else {
-                    data.postValue(NetworkResult.Error("Failed to edit user profile"))
-                }
-            } catch (e: Exception) {
-                data.postValue(NetworkResult.Error(e.message ?: "An error occurred"))
-            }
-        }
-        return data
+    suspend fun editUser(authorization: String, id: String, editUserRequest: EditUserRequest): Response<EditUserResponse> {
+        return apiService.editUser(authorization, id, editUserRequest)
     }
 
     companion object {

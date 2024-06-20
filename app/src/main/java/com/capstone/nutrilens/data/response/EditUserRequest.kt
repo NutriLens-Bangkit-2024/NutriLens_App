@@ -16,5 +16,5 @@ data class EditUserRequest(
     val name: String? = null,
 
     @field:SerializedName("profileurl")
-    val profileUrl: String? = null
+    val profileurl: String? = null
 ) : Parcelable
