@@ -15,6 +15,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.capstone.nutrilens.R
 import com.capstone.nutrilens.data.api.ApiService
 import com.capstone.nutrilens.data.response.RecipesItem
@@ -26,6 +27,9 @@ import com.capstone.nutrilens.ui.news.NewsAdapter
 import com.capstone.nutrilens.ui.news.NewsRepository
 import com.capstone.nutrilens.ui.news.NewsViewModel
 import com.capstone.nutrilens.ui.news.ViewModelFactory
+import com.capstone.nutrilens.ui.profile.ProfileRepository
+import com.capstone.nutrilens.ui.profile.ProfileViewModel
+import com.capstone.nutrilens.ui.profile.ProfileViewModelFactory
 import com.capstone.nutrilens.ui.progress.CaloriesRepository
 import com.capstone.nutrilens.ui.progress.ProgressViewModel
 import com.capstone.nutrilens.ui.progress.ProgressViewModelFactory
@@ -41,6 +45,7 @@ class HomeFragment : Fragment() {
     private lateinit var recipeAdapter: RecipeBesarAdapter
     private lateinit var binding: FragmentHomeBinding
     private lateinit var preferences: Preferences
+    private lateinit var profileViewModel: ProfileViewModel
 
     private val recipeViewModel by viewModels<RecipeViewModel> {
         RecipeViewModelFactory.getInstance(requireContext())
@@ -98,6 +103,29 @@ class HomeFragment : Fragment() {
                 }
             }
         }
+        val profileRepository = ProfileRepository(ApiService.instanceRetrofit)
+        val factory = ProfileViewModelFactory(profileRepository)
+        profileViewModel = ViewModelProvider(this, factory).get(ProfileViewModel::class.java)
+
+        if (preferences.getToken().toString() != null && preferences.getUserId().toString() != null) {
+            profileViewModel.fetchUser("Bearer ${preferences.getToken().toString()}", preferences.getUserId().toString())
+        }
+        profileViewModel.user.observe(viewLifecycleOwner, Observer { result ->
+            when (result) {
+                is NetworkResult.Loading -> {
+                    // Tampilkan indikator loading jika diperlukan
+                }
+                is NetworkResult.Success -> {
+                    val user = result.data?.data?.user
+                    val username = user?.name
+
+                    binding.tvUsernameHome.text = username
+                }
+                is NetworkResult.Error -> {
+                    Toast.makeText(context, "Error: ${result.exception}", Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
 
         newsAdapter = NewsAdapter()
         binding.rvNewsHome.apply {

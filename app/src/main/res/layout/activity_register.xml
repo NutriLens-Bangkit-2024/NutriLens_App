@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/root_padding"
+    android:background="@color/white"
     tools:context=".ui.register.RegisterActivity">
 
     <ImageView
@@ -57,6 +58,7 @@
         android:maxLines="1"
         android:padding="13dp"
         android:textSize="15sp"
+        android:textColor="@color/primary"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@id/usernameTextView"
         app:layout_constraintTop_toBottomOf="@id/emailTextView" />
@@ -82,6 +84,7 @@
         android:maxLines="1"
         android:padding="13dp"
         android:textSize="15sp"
+        android:textColor="@color/primary"
         app:layout_constraintBottom_toTopOf="@id/passwordTextView"
         app:layout_constraintTop_toBottomOf="@id/usernameTextView" />
 
@@ -116,7 +119,8 @@
             android:hint="@string/text_password"
             android:maxLines="1"
             android:padding="13dp"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            android:textColor="@color/primary"/>
     </com.google.android.material.textfield.TextInputLayout>
 
 
