@@ -31,7 +31,7 @@
     <string name="dialog_ingin_makan">Apakah anda ingin mengonsumsi makanan ini ?</string>
     <string name="kembali">Kembali</string>
     <string name="yakin">Yakin</string>
-    <string name="dialog_nutri_score">Nutri Score dari makanan ini adalah</string>
+    <string name="dialog_nutri_score">Nutri-Score dari makanan ini adalah</string>
     <string name="dialog_kalori">Makanan kemasan ini mengandung %d kalori</string>
     <string name="mengerti">Mengerti</string>
 
@@ -83,7 +83,7 @@
     <string name="detail_nutrisi_makanan">Detail Nutrisi Makanan</string>
     <string name="jenis_nutrisi">Kalsium</string>
     <string name="gram">gram</string>
-    <string name="process_nutriscore">Process Nutriscore!</string>
+    <string name="process_nutriscore">Proses Nutriscore!</string>
     <string name="takaran_saji">Takaran Saji</string>
     <string name="energi">Energi</string>
     <string name="karbohidrat">Karbohidrat</string>
