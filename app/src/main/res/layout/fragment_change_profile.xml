@@ -134,7 +134,7 @@
                     android:background="@drawable/bg_edit_text"
                     android:ems="10"
                     android:inputType="textPassword"
-                    android:textColor="@color/primary"
+                    android:textColor="@color/black"
                     android:hint="@string/ubah_password"
                     tools:ignore="SpeakableTextPresentCheck" />
             </com.google.android.material.textfield.TextInputLayout>
