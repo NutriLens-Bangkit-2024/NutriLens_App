@@ -1,6 +1,6 @@
 # NutriLens Application
 
-## Nutrilens - NutriScore App for Healthy Lifestyle is an innovative Android application that scans a nutritional information on packaged foods. Designed to empower users, this app helps you make smarter, healthier choices when selecting packaged foods for your well-being.
+Nutrilens - NutriScore App for Healthy Lifestyle is an innovative Android application that scans a nutritional information on packaged foods. Designed to empower users, this app helps you make smarter, healthier choices when selecting packaged foods for your well-being.
 
 # UI Application
 
