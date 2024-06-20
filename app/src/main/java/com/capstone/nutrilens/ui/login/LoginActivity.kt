@@ -6,13 +6,9 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
 import com.capstone.nutrilens.MainActivity
-import com.capstone.nutrilens.R
 import com.capstone.nutrilens.data.response.LoginRequest
-import com.capstone.nutrilens.data.response.LoginResponse
 import com.capstone.nutrilens.data.session.UserModel
 import com.capstone.nutrilens.data.util.NetworkResult
 import com.capstone.nutrilens.data.util.Preferences
@@ -80,7 +76,7 @@ class LoginActivity : AppCompatActivity() {
                     }
                 }
                 is NetworkResult.Error -> {
-                    Toast.makeText(this, response.exception ?: "An error occurred", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "User not found, check your email and password", Toast.LENGTH_SHORT).show()
                 }
                 is NetworkResult.Loading -> {
                     binding.progressBar.isVisible = response.isLoading

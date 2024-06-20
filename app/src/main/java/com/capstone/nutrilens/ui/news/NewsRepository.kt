@@ -4,8 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.capstone.nutrilens.data.api.ApiConfig
 import com.capstone.nutrilens.data.response.NewsListApiResponse
-import com.capstone.nutrilens.data.response.NewsListData
-import com.capstone.nutrilens.data.response.News
 import com.capstone.nutrilens.data.response.NewsDetailApiResponse
 import retrofit2.Call
 import retrofit2.Callback

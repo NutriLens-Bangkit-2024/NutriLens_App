@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
 import com.capstone.nutrilens.data.api.ApiConfig
-import com.capstone.nutrilens.data.api.ApiService
 import com.capstone.nutrilens.data.response.RecipeResponse
 import com.capstone.nutrilens.data.response.RecipesItem
 import com.capstone.nutrilens.data.util.Result

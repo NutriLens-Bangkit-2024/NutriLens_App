@@ -1,12 +1,8 @@
 package com.capstone.nutrilens.ui.recipe
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.bumptech.glide.Glide
-import com.capstone.nutrilens.R
 import com.capstone.nutrilens.databinding.ActivityRecipeDetailBinding
 
 class RecipeDetailActivity : AppCompatActivity() {

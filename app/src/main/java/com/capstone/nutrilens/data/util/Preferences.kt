@@ -3,7 +3,6 @@ package com.capstone.nutrilens.data.util
 import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
-//import at.favre.lib.crypto.bcrypt.BCrypt
 
 class Preferences(context: Context) {
     private val sharedPreferences: SharedPreferences = context.getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE)

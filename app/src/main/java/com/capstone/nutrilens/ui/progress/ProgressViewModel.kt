@@ -3,7 +3,6 @@ package com.capstone.nutrilens.ui.progress
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.capstone.nutrilens.data.api.ApiConfig
 import com.capstone.nutrilens.data.response.CaloriesResponse
 import com.capstone.nutrilens.data.util.NetworkResult
 import retrofit2.Call

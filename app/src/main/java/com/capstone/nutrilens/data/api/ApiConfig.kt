@@ -27,7 +27,6 @@ import retrofit2.http.Header
 import retrofit2.http.Multipart
 import retrofit2.http.PATCH
 import retrofit2.http.POST
-import retrofit2.http.PUT
 import retrofit2.http.Part
 import retrofit2.http.Path
 
@@ -59,23 +58,10 @@ interface ApiConfig {
         @Body editUserRequest: EditUserRequest
     ): Response<EditUserResponse>
 
-    @POST("logout")
-    fun logout(
-        @Header("Authorization") authorization: String
-    ): Call<ResponseBody>
-
     @GET("news")
     fun getAllNews(
         @Header("Authorization") authorization: String
     ): Call<NewsListApiResponse>
-
-    @FormUrlEncoded
-    @POST("saveFood")
-    fun postPredict(
-        @Header("Authorization") authorization: String,
-        @Field("label") label: String,
-        @Field("calories") calories: Int
-    ): Call<ResponseBody>
 
     @GET("weekly-calories")
     fun getCalories(

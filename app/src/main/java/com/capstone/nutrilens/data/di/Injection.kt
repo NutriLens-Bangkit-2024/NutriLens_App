@@ -25,11 +25,6 @@ object Injection {
         return RegisterRepository.getInstance(apiconfig)
     }
 
-    fun provideLoginRepository(): LoginRepository {
-        val apiconfig = ApiService.instanceRetrofit
-        return LoginRepository.getInstance(apiconfig)
-    }
-
     fun provideProfileRepository(): ProfileRepository {
         val apiconfig = ApiService.instanceRetrofit
         return ProfileRepository.getInstance(apiconfig)

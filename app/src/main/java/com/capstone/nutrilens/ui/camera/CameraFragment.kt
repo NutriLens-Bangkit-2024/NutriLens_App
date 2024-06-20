@@ -1,7 +1,6 @@
 package com.capstone.nutrilens.ui.camera
 
 import android.app.Dialog
-import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
@@ -18,9 +17,7 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
-import com.capstone.nutrilens.MainActivity
 import com.capstone.nutrilens.R
 import com.capstone.nutrilens.data.util.Preferences
 import com.capstone.nutrilens.data.util.Result
@@ -78,39 +75,6 @@ class CameraFragment : Fragment() {
 
         val token = preferences.getToken().toString()
 
-//        binding.buttonGetNutriScore.setOnClickListener {
-//            imageUri?.let{uri->
-//                val imageFile = uriToFile(uri, requireContext())
-//                Log.d("Image File", "showImage: ${imageFile.path}")
-//
-//                val requestImageFile = imageFile.asRequestBody("image/jpeg".toMediaType())
-//                val multipartBody = MultipartBody.Part.createFormData(
-//                    "photo",
-//                    imageFile.name,
-//                    requestImageFile
-//                )
-//                scanningViewmodel.getScanningResponse(preferences.getToken().toString(),multipartBody)
-//                scanningViewmodel.scanningResult.observe(viewLifecycleOwner){result->
-//                    when(result){
-//                        is NetworkResult.Loading-> showLoading(true)
-//                        is NetworkResult.Success ->{
-//                            showLoading(false)
-//                            dialog.setContentView(R.layout.dialog_detail_nutrisi)
-//                            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-//                            dialog.show()
-//                            result.data?.let { data ->
-//                                val et: EditText = dialog.findViewById(R.id.edt_beratTakaranSaji)
-//                                et.setText(data.takaranSaji.toString())
-//                            }
-//                        }
-//                        is NetworkResult.Error->{
-//                            showLoading(false)
-//                            Toast.makeText(requireContext(),"Failed to get data",Toast.LENGTH_LONG).show()
-//                        }
-//                    }
-//                }
-//            } ?: Toast.makeText(requireContext(),"No image to be processed",Toast.LENGTH_LONG).show()
-//        }
         binding.buttonGetNutriScore.setOnClickListener {
             imageUri?.let { uri ->
                 val imageFile = uriToFile(uri, requireContext()).reduceFileImage()
@@ -121,17 +85,7 @@ class CameraFragment : Fragment() {
                             is Result.Loading -> showLoading(true)
                             is Result.Success -> {
                                 showLoading(false)
-//                            Toast.makeText(requireContext(),result.data.takaranSaji.toString(),Toast.LENGTH_LONG).show()
-//                            dialog.setContentView(R.layout.dialog_detail_nutrisi)
-//                            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-//                            dialog.show()
-//
-//                            result.data.let {
-//                                val et: EditText = dialog.findViewById(R.id.edt_beratTakaranSaji)
-//                                et.setText(it.takaranSaji.toString())
-//                            }
                                 result.data.let {
-//                                showDialogDetailNutrisi(it.takaranSaji)
                                     showDialogDetailNutrisi(
                                         it.takaranSaji,
                                         it.energi,
@@ -153,11 +107,9 @@ class CameraFragment : Fragment() {
                                 ).show()
                             }
                         }
-
                     }
             }
         }
-
     }
 
     private fun showDialogDetailNutrisi(
@@ -224,7 +176,6 @@ class CameraFragment : Fragment() {
                         Log.d("ModelResponse", "Success: ${result.data}")
                         result.data.let {
                             showNutriScore(it.score,it.calPer100g)
-//                            Toast.makeText(requireContext(),"${it.score.toString()}, ${it.calPer100g.toString()}",Toast.LENGTH_LONG).show()
                         }
                     }
                     is Result.Error->{
@@ -252,7 +203,7 @@ class CameraFragment : Fragment() {
         }
 
         val tvDialogKalori : TextView = dialog.findViewById(R.id.tv_dialog_kalori)
-        tvDialogKalori.text = "Makanan kemasan ini mengandung $calPer100g kalori"
+        tvDialogKalori.text = "Makanan kemasan ini mengandung $calPer100g kalori per 100 gram"
 
         val btnMengerti : Button = dialog.findViewById(R.id.btn_mengerti)
         btnMengerti.setOnClickListener{
@@ -292,21 +243,7 @@ class CameraFragment : Fragment() {
         }
     }
 
-//    private fun showNutriscore() {
-//
-//
-//        val btnYesshow: Button = dialog.findViewById(R.id.btn_mengerti)
-//        btnYesshow.setOnClickListener {
-//            dialog.setContentView(R.layout.dialog_ingin_mengonsumsi)
-//            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-//            dialog.show()
-//
-//
-//        }
-//    }
-
     private fun showLoading(boolean: Boolean) {
         binding.processNutriScoreProgressBar.visibility = if (boolean) View.VISIBLE else View.GONE
     }
-
 }

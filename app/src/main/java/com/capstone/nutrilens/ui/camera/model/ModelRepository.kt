@@ -1,6 +1,5 @@
 package com.capstone.nutrilens.ui.camera.model
 
-import androidx.datastore.preferences.protobuf.Api
 import androidx.lifecycle.liveData
 import com.capstone.nutrilens.data.api.ApiConfig
 import com.capstone.nutrilens.data.response.ModelTestingResponse

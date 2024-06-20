@@ -1,7 +1,6 @@
 package com.capstone.nutrilens.ui.recipe
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.capstone.nutrilens.data.response.RecipesItem
 

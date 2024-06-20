@@ -4,12 +4,9 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
-import com.capstone.nutrilens.R
 import com.capstone.nutrilens.data.api.ApiService
 import com.capstone.nutrilens.data.util.Preferences
 import com.capstone.nutrilens.databinding.ActivityNewsBinding

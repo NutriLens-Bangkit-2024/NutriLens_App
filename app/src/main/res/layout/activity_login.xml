@@ -128,7 +128,7 @@
             android:id="@+id/textIsHaveAccount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/label_is_have_account"
+            android:text="@string/label_is_no_account"
             android:fontFamily="@font/poppins"
             android:textColor="@color/primary" />
 

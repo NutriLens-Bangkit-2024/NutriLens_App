@@ -21,7 +21,6 @@ import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
-import com.github.mikephil.charting.utils.ColorTemplate
 import java.util.Locale
 
 class ProgressFragment : Fragment() {
@@ -32,8 +31,6 @@ class ProgressFragment : Fragment() {
     private lateinit var preferences: Preferences
 
     private lateinit var barChart: BarChart
-    private lateinit var barData: BarData
-    private lateinit var barDataSet: BarDataSet
     private lateinit var barEntriesList: ArrayList<BarEntry>
     private val labels = arrayOf("Sen", "Sel", "Rab", "Kam", "Jum", "Sab", "Min")
 

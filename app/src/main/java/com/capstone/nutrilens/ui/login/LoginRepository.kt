@@ -3,8 +3,6 @@ package com.capstone.nutrilens.ui.login
 import com.capstone.nutrilens.data.api.ApiConfig
 import com.capstone.nutrilens.data.response.LoginRequest
 import com.capstone.nutrilens.data.response.LoginResponse
-import com.capstone.nutrilens.ui.recipe.RecipeRepository
-import retrofit2.Call
 import retrofit2.Response
 
 class LoginRepository private constructor(

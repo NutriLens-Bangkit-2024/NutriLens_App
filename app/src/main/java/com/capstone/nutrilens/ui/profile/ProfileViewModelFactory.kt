@@ -4,8 +4,6 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.capstone.nutrilens.data.di.Injection
-import com.capstone.nutrilens.data.util.Preferences
-import com.capstone.nutrilens.ui.recipe.RecipeViewModelFactory
 
 class ProfileViewModelFactory(private val profileRepository: ProfileRepository) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {

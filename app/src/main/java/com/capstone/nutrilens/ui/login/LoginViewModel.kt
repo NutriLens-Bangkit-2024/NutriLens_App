@@ -1,18 +1,12 @@
 package com.capstone.nutrilens.ui.login
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.capstone.nutrilens.data.api.ApiService
 import com.capstone.nutrilens.data.response.LoginRequest
 import com.capstone.nutrilens.data.response.LoginResponse
-import com.capstone.nutrilens.data.response.UserResponse
 import com.capstone.nutrilens.data.util.NetworkResult
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.onCompletion
-import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 
 class LoginViewModel : ViewModel() {

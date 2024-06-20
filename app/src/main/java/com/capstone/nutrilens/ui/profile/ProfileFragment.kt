@@ -2,7 +2,6 @@ package com.capstone.nutrilens.ui.profile
 
 import android.app.AlertDialog
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -19,14 +18,11 @@ import com.capstone.nutrilens.data.util.NetworkResult
 import com.capstone.nutrilens.data.util.Preferences
 import com.capstone.nutrilens.databinding.DialogKeluarBinding
 import com.capstone.nutrilens.databinding.FragmentProfileBinding
-import com.capstone.nutrilens.ui.changeprofile.ChangeProfileFragment
-import com.capstone.nutrilens.ui.darkmode.DarkModeViewModel
 
 class ProfileFragment : Fragment() {
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var darkModeViewModel: DarkModeViewModel
     private lateinit var profileViewModel: ProfileViewModel
     private lateinit var preferences: Preferences
 
