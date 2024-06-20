@@ -31,7 +31,7 @@
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="0dp"
-        android:layout_height="490dp"
+        android:layout_height="520dp"
         android:layout_margin="16dp"
         app:cardCornerRadius="25dp"
         android:backgroundTint="@color/white"
@@ -58,6 +58,21 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
+            <TextView
+                android:id="@+id/tv_changeUsername"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ubah_username"
+                android:textSize="16sp"
+                android:fontFamily="@font/poppins_regular"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@id/changeProfileText"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"/>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/changeUsernameEditTextLayout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -67,46 +82,36 @@
                 android:layout_marginEnd="32dp"
                 app:boxStrokeColor="@color/primary"
                 app:boxStrokeWidth="2dp"
+                app:hintEnabled="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/changeProfileText">
+                app:layout_constraintTop_toBottomOf="@+id/tv_changeUsername">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edtChangeUsername"
                     android:background="@drawable/bg_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/primary"
+                    android:textColor="@color/black"
                     android:ems="10"
                     android:maxLines="1"
                     android:hint="@string/ubah_username"
                     tools:ignore="SpeakableTextPresentCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
-<!--            <com.google.android.material.textfield.TextInputLayout-->
-<!--                android:id="@+id/oldPasswordEditTextLayout"-->
-<!--                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                app:hintEnabled="false"-->
-<!--                app:endIconMode="password_toggle"-->
-<!--                android:layout_marginStart="32dp"-->
-<!--                android:layout_marginEnd="32dp"-->
-<!--                android:layout_marginTop="8dp"-->
-<!--                app:boxStrokeColor="@color/primary"-->
-<!--                app:boxStrokeWidth="2dp"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/changeUsernameEditTextLayout">-->
-<!--                <com.google.android.material.textfield.TextInputEditText-->
-<!--                    android:id="@+id/edt_oldPassword"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:background="@drawable/bg_edit_text"-->
-<!--                    android:ems="10"-->
-<!--                    android:inputType="textPassword"-->
-<!--                    android:hint="Password Lama"-->
-<!--                    tools:ignore="SpeakableTextPresentCheck" />-->
-<!--            </com.google.android.material.textfield.TextInputLayout>-->
+            <TextView
+                android:id="@+id/tv_changePassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ubah_password"
+                android:textSize="16sp"
+                android:fontFamily="@font/poppins_regular"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@+id/changeUsernameEditTextLayout"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/changePasswordEditTextLayout"
@@ -116,12 +121,12 @@
                 app:endIconMode="password_toggle"
                 android:layout_marginStart="32dp"
                 android:layout_marginEnd="32dp"
-                android:layout_marginTop="8dp"
-                app:boxStrokeColor="@color/primary"
+                app:boxStrokeColor="@color/black"
+                app:hintEnabled="false"
                 app:boxStrokeWidth="2dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/changeUsernameEditTextLayout">
+                app:layout_constraintTop_toBottomOf="@+id/tv_changePassword">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edt_changePassword"
                     android:layout_width="match_parent"
@@ -130,9 +135,24 @@
                     android:ems="10"
                     android:inputType="textPassword"
                     android:textColor="@color/primary"
-                    android:hint="Password Baru"
+                    android:hint="@string/ubah_password"
                     tools:ignore="SpeakableTextPresentCheck" />
             </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/tv_confirmPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ubah_password_new"
+                android:textSize="16sp"
+                android:fontFamily="@font/poppins_regular"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@+id/changePasswordEditTextLayout"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/confirmPasswordEditTextLayout"
@@ -142,12 +162,12 @@
                 app:endIconMode="password_toggle"
                 android:layout_marginStart="32dp"
                 android:layout_marginEnd="32dp"
-                android:layout_marginTop="8dp"
                 app:boxStrokeColor="@color/primary"
+                app:hintEnabled="false"
                 app:boxStrokeWidth="2dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/changePasswordEditTextLayout">
+                app:layout_constraintTop_toBottomOf="@+id/tv_confirmPassword">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edt_confirmPassword"
                     android:layout_width="match_parent"
@@ -155,8 +175,8 @@
                     android:background="@drawable/bg_edit_text"
                     android:ems="10"
                     android:inputType="textPassword"
-                    android:textColor="@color/primary"
-                    android:hint="Ketik Ulang Password"
+                    android:textColor="@color/black"
+                    android:hint="@string/ubah_password_new"
                     tools:ignore="SpeakableTextPresentCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 

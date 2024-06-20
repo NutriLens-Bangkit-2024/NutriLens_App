@@ -65,18 +65,6 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        fun updateProgressBarColor(progressBar: ProgressBar, calorieValue: Int) {
-//            val maxCalories = 2500
-//            val midCalories = 1500
-//            val drawable = when {
-//                calorieValue <= midCalories -> R.drawable.progress_bar_low
-//                calorieValue <= maxCalories -> R.drawable.progress_bar_mid
-//                else -> R.drawable.progress_bar_high
-//            }
-//            progressBar.progressDrawable = context?.let { ContextCompat.getDrawable(it, drawable) }
-//        }
-
-        // Inisialisasi ViewModel
         val repository = NewsRepository(ApiService.instanceRetrofit)
         newsViewModel = ViewModelProvider(this, ViewModelFactory(repository))[NewsViewModel::class.java]
 
@@ -96,7 +84,6 @@ class HomeFragment : Fragment() {
                             0
                         }
                     binding.calorieProgressBar.progress = latest
-//                    updateProgressBarColor(binding.calorieProgressBar, latestValue)
                 }
                 is NetworkResult.Error-> {
                     Toast.makeText(requireContext(),"Gagal mendapatkan data progress harian",Toast.LENGTH_LONG).show()
@@ -171,89 +158,6 @@ class HomeFragment : Fragment() {
 
     }
 }
-
-//    private var _binding: FragmentHomeBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-//    private val binding get() = _binding!!
-//
-//    override fun onCreateView(
-//        inflater: LayoutInflater,
-//        container: ViewGroup?,
-//        savedInstanceState: Bundle?
-//    ): View {
-//        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-//        return binding.root
-//    }
-//
-//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        super.onViewCreated(view, savedInstanceState)
-//
-//        val dialog = Dialog(requireContext())
-//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-//        dialog.setCancelable(true)
-
-//        binding.btnInginMengonsumsi.setOnClickListener {
-//            dialog.setContentView(R.layout.dialog_ingin_mengonsumsi)
-//            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-//            dialog.show()
-//
-//
-//            val btnYes : Button = dialog.findViewById(R.id.btn_ingin_makan_yakin)
-//            btnYes.setOnClickListener {
-//                Toast.makeText(requireContext(),"THE YES BUTTON WORKS NOW",Toast.LENGTH_LONG).show()
-//                dialog.dismiss()
-//            }
-//            val btnNo : Button = dialog.findViewById(R.id.btn_ingin_makan_kembali)
-//            btnNo.setOnClickListener {
-//                Toast.makeText(requireContext(),"THE NO BUTTON WORKS NOW",Toast.LENGTH_LONG).show()
-//                dialog.dismiss()
-//            }
-//        }
-//
-//        binding.btnDialogNutriscore.setOnClickListener {
-//            dialog.setContentView(R.layout.dialog_nutriscore)
-//            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-//            dialog.show()
-//
-//            val btnMengerti : Button = dialog.findViewById(R.id.btn_mengerti)
-//            btnMengerti.setOnClickListener {
-//                Toast.makeText(requireContext(),"THE YES BUTTON WORKS NOW",Toast.LENGTH_LONG).show()
-//                dialog.dismiss()
-//            }
-//        }
-//
-//        binding.btnDialogKeluar.setOnClickListener {
-//            dialog.setContentView(R.layout.dialog_keluar)
-//            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-//            dialog.show()
-//
-//
-//            val btnYes : Button = dialog.findViewById(R.id.btn_keluar_yakin)
-//            btnYes.setOnClickListener {
-//                Toast.makeText(requireContext(),"THE YES BUTTON WORKS NOW",Toast.LENGTH_LONG).show()
-//                dialog.dismiss()
-//            }
-//            val btnNo : Button = dialog.findViewById(R.id.btn_keluar_kembali)
-//            btnNo.setOnClickListener {
-//                Toast.makeText(requireContext(),"THE NO BUTTON WORKS NOW",Toast.LENGTH_LONG).show()
-//                dialog.dismiss()
-//            }
-//        }
-//
-//        binding.btnDialogSukses.setOnClickListener {
-//            dialog.setContentView(R.layout.dialog_success_password)
-//            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-//            dialog.show()
-//
-//            val btnMengerti: Button = dialog.findViewById(R.id.btn_password_mengerti)
-//            btnMengerti.setOnClickListener {
-//                Toast.makeText(requireContext(),"THE YES BUTTON WORKS NOW",Toast.LENGTH_LONG).show()
-//                dialog.dismiss()
-//            }
-//        }
-//    }
 
 //    override fun onDestroyView() {
 //        super.onDestroyView()

@@ -10,11 +10,7 @@
     <item android:id="@+id/progress">
         <scale android:scaleWidth="100%">
             <shape android:shape="rectangle">
-                <gradient
-                    android:startColor="#00FF00"
-                    android:centerColor="#FFFF00"
-                    android:endColor="#FF0000"
-                    android:angle="0"/>
+                <solid android:color="#00FF00"/>
                 <corners android:radius="25dp"/>
             </shape>
         </scale>

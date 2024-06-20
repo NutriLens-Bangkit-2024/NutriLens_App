@@ -129,7 +129,7 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="620dp"
+                android:layout_height="650dp"
                 android:layout_margin="16dp"
                 app:cardCornerRadius="15dp"
                 app:cardElevation="50dp"
@@ -140,13 +140,12 @@
                     android:layout_height="match_parent"
                     android:padding="32dp">
 
-                    <!-- TextViews di bagian paling atas -->
                     <TextView
                         android:id="@+id/tv_header1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_regular"
-                        android:textSize="12sp"
+                        android:textSize="13sp"
                         android:textColor="@color/black"
                         android:text="@string/header1_progress"
                         app:layout_constraintTop_toTopOf="parent"
@@ -158,7 +157,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_regular"
-                        android:textSize="12sp"
+                        android:textSize="13sp"
                         android:textColor="@color/black"
                         android:text="@string/header2_progress"
                         app:layout_constraintTop_toBottomOf="@id/tv_header1"
@@ -180,7 +179,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_regular"
-                        android:textSize="12sp"
+                        android:textSize="13sp"
                         android:textColor="@color/black"
                         android:text="@string/kategoriA_progress"
                         android:maxLines="2"
@@ -204,7 +203,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_regular"
-                        android:textSize="12sp"
+                        android:textSize="13sp"
                         android:textColor="@color/black"
                         android:text="@string/kategoriB_progress"
                         android:maxLines="2"
@@ -228,7 +227,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_regular"
-                        android:textSize="12sp"
+                        android:textSize="13sp"
                         android:textColor="@color/black"
                         android:text="@string/kategoriC_progress"
                         android:maxLines="2"
@@ -252,7 +251,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_regular"
-                        android:textSize="12sp"
+                        android:textSize="13sp"
                         android:textColor="@color/black"
                         android:text="@string/kategoriD_progress"
                         android:maxLines="2"
@@ -276,7 +275,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_regular"
-                        android:textSize="12sp"
+                        android:textSize="13sp"
                         android:textColor="@color/black"
                         android:text="@string/kategoriE_progress"
                         android:maxLines="2"
@@ -286,13 +285,12 @@
                         app:layout_constraintBottom_toBottomOf="@id/iv_nutriScore_E"
                         app:layout_constraintStart_toEndOf="@id/iv_nutriScore_E"/>
 
-                    <!-- TextView tambahan di bagian bawah -->
                     <TextView
                         android:id="@+id/tv_footer"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_regular"
-                        android:textSize="12sp"
+                        android:textSize="13sp"
                         android:textColor="@color/black"
                         android:text="@string/footer_progress"
                         app:layout_constraintTop_toBottomOf="@id/iv_nutriScore_E"

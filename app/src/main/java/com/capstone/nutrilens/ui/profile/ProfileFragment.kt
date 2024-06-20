@@ -80,7 +80,7 @@ class ProfileFragment : Fragment() {
         binding.buttonChangeProfile.setOnClickListener {
             val bundle = Bundle().apply {
                 putString("userEmail", userEmail)
-                putString("userProfileUrl", userProfileUrl) // Anda perlu menggantinya dengan nilai profil URL yang valid dari hasil panggilan API
+                putString("userProfileUrl", userProfileUrl)
             }
             findNavController().navigate(R.id.action_profileFragment_to_changeProfileFragment, bundle)
         }

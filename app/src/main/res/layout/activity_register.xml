@@ -58,7 +58,7 @@
         android:maxLines="1"
         android:padding="13dp"
         android:textSize="15sp"
-        android:textColor="@color/primary"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@id/usernameTextView"
         app:layout_constraintTop_toBottomOf="@id/emailTextView" />
@@ -84,7 +84,7 @@
         android:maxLines="1"
         android:padding="13dp"
         android:textSize="15sp"
-        android:textColor="@color/primary"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@id/passwordTextView"
         app:layout_constraintTop_toBottomOf="@id/usernameTextView" />
 
@@ -120,7 +120,7 @@
             android:maxLines="1"
             android:padding="13dp"
             android:textSize="15sp"
-            android:textColor="@color/primary"/>
+            android:textColor="@color/black"/>
     </com.google.android.material.textfield.TextInputLayout>
 
 

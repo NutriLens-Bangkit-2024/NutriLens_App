@@ -45,7 +45,7 @@
 
     <string name="profile">Profile</string>
     <string name="name">Nama</string>
-    <string name="name_home">alivya</string>
+    <string name="name_home">username</string>
     <string name="email">Email</string>
     <string name="dark_mode">Dark Mode</string>
     <string name="light_mode">Light Mode</string>
@@ -53,6 +53,8 @@
     <string name="sukses">Sukses!</string>
     <string name="profile_change">Profile berhasil diubah</string>
     <string name="ubah_username">Ubah Nama</string>
+    <string name="ubah_password">Kata Sandi Baru</string>
+    <string name="ubah_password_new">Ketik Ulang Kata Sandi Baru</string>
     <string name="change_profile">Ubah Profile</string>
     <string name="berita">Berita</string>
     <string name="logout">Keluar</string>
